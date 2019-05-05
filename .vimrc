@@ -25,7 +25,7 @@ hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 set wildmenu
 set wildmode=longest,list,full
 
-noremap <F3> :set invnumber invrelativenumber<CR>
+noremap <F3> :set invnumber<CR>
 
 set wildignore+=node_modules/**,*.pyc
 set runtimepath^=~/.vim/bundle/ctrlp.vim
