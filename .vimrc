@@ -16,7 +16,7 @@ set expandtab
 set number
 set ffs=dos,unix
 set nocompatible              
-set relativenumber
+set number
 set showcmd
 
 set cursorline
@@ -60,6 +60,11 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_working_path_mode = 'a'
 " end ctrl-p
+
+
+" NERDTree
+let g:NERDTreeQuitOnOpen = 1
+"
 
 " go-vim 
 au FileType go nmap <leader>r <Plug>(go-run)
