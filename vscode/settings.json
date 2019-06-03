@@ -17,5 +17,9 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.enablePreview": false,
     "explorer.openEditors.visible": 0,
-    "breadcrumbs.enabled": true
+    "breadcrumbs.enabled": true,
+    "[go]": {
+        "editor.formatOnSave": true
+    },
+    "go.formatTool": "goreturns"
 }
