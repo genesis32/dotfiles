@@ -1,0 +1,12 @@
+vmap <C-c> <Esc> 
+set timeout timeoutlen=1000 ttimeoutlen=100
+imap jk <Esc>
+
+set visualbell
+set noerrorbells
+
+" split window stuff
+nnoremap <C-j> <C-w><C-J>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>

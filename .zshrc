@@ -108,4 +108,4 @@ function source_if_possible()
     fi
 }
 
-source_if_possible .zshrc.local
+source_if_possible $HOME/.zshrc.local
