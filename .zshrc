@@ -107,5 +107,6 @@ function source_if_possible()
         source $1
     fi
 }
-
+NEWLINE=$'\n'
+PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m${NEWLINE}${PROMPT}"
 source_if_possible $HOME/.zshrc.local
