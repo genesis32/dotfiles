@@ -1,0 +1,4 @@
+#include "/home/ddm/dotfiles/Xresources-themes/iterm-Molokai.Xresources"
+URxvt.background: [90]#000000
+URxvt.font: xft:monospace:size=9
+URxvt.geometry: 140x70
