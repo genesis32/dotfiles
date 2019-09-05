@@ -109,4 +109,5 @@ function source_if_possible()
 }
 NEWLINE=$'\n'
 PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m${NEWLINE}${PROMPT}"
+xset b off
 source_if_possible $HOME/.zshrc.local
