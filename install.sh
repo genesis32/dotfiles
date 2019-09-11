@@ -16,6 +16,7 @@ pushd $HOME/.vim/
 git clone https://github.com/ctrlpvim/ctrlp.vim.git bundle/ctrlp.vim
 git clone https://github.com/scrooloose/nerdtree.git bundle/nerdtree
 git clone https://github.com/fatih/vim-go.git bundle/vim-go
+git clone https://github.com/dracula/vim.git bundle/dracula-theme
 popd 
 
 

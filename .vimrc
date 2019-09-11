@@ -3,6 +3,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 "colorscheme slate
+colorscheme dracula
 
 " variables
 set nocp

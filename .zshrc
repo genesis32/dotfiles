@@ -68,6 +68,7 @@ plugins=(
   kubectl
   pip
   rsync
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
