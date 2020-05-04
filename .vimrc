@@ -2,8 +2,7 @@ execute pathogen#infect()
 
 syntax on
 filetype plugin indent on
-"colorscheme slate
-colorscheme dracula
+colorscheme elflord
 
 " variables
 set nocp
@@ -98,12 +97,6 @@ let g:go_fmt_autosave = 1
 let g:go_play_open_browser = 0
 
 " end go-vim 
-
-if has('win32')
-    set guifont=Consolas:h11
-elseif has('gui_macvim')
-    set guifont=Monaco:h13
-endif
 
 set laststatus=2
 set statusline=

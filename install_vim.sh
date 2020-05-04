@@ -1,12 +1,8 @@
 #!/bin/bash
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo apt-get update && sudo apt-get install vim git -y
 
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
-ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
-ln -s $HOME/dotfiles/.imwheelrc $HOME/.imwheelrc
-ln -s $HOME/dotfiles/.ideavimrc $HOME/.ideavimrc
-ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 
 mkdir -p $HOME/.vim/autoload && curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
@@ -16,7 +12,6 @@ pushd $HOME/.vim/
 git clone https://github.com/ctrlpvim/ctrlp.vim.git bundle/ctrlp.vim
 git clone https://github.com/scrooloose/nerdtree.git bundle/nerdtree
 git clone https://github.com/fatih/vim-go.git bundle/vim-go
-git clone https://github.com/dracula/vim.git bundle/dracula-theme
 popd 
 
 
