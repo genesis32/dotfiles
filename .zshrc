@@ -7,7 +7,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="af-magic"
+ZSH_THEME="kphoen"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -68,7 +69,7 @@ plugins=(
   kubectl
   pip
   rsync
-  vi-mode
+#  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,8 +109,6 @@ function source_if_possible()
         source $1
     fi
 }
-NEWLINE=$'\n'
-PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m${NEWLINE}${PROMPT}"
 
 alias d='dirs -v | head -10'
 alias 1='cd -'

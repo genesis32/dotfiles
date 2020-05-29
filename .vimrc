@@ -2,8 +2,7 @@ execute pathogen#infect()
 
 syntax on
 filetype plugin indent on
-"colorscheme slate
-colorscheme dracula
+colorscheme elflord
 
 " variables
 set nocp
@@ -21,8 +20,8 @@ set nocompatible
 set number
 set showcmd
 
-set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+"set cursorline
+"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 
 set wildmenu
 set wildmode=longest,list,full
@@ -101,8 +100,6 @@ let g:go_play_open_browser = 0
 
 if has('win32')
     set guifont=Consolas:h11
-elseif has('gui_macvim')
-    set guifont=Monaco:h13
 endif
 
 set laststatus=2
