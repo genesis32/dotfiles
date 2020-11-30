@@ -20,6 +20,8 @@ set nocompatible
 set number
 set showcmd
 
+set belloff=all
+
 "set cursorline
 "hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 
