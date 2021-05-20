@@ -52,7 +52,7 @@ nnoremap cc :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap cl :exec "normal a".nr2char(getchar())."\e"<CR>
 " end reformat
 
-autocmd BufNewFile,BufRead *.json set ft=javascrip
+autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufWritePre * %s/\s\+$//e
 
 
