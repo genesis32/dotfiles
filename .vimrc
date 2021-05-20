@@ -5,6 +5,7 @@ filetype plugin indent on
 
 " variables
 set nocp
+set ai
 set bs=indent,eol,start
 set hls is ic scs
 set sw=4 sts=4 et
@@ -15,14 +16,13 @@ set shiftwidth=2
 set expandtab
 set number
 set ffs=dos,unix
-set nocompatible              
+set nocompatible
 set number
 set showcmd
 
 set belloff=all
 
-"set cursorline
-"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+set cursorline
 
 set wildmenu
 set wildmode=longest,list,full
@@ -32,9 +32,9 @@ noremap <F3> :set invnumber<CR>
 set wildignore+=node_modules/**,*.pyc
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-vmap <C-c> <Esc> 
+vmap <C-c> <Esc>
 set timeout timeoutlen=1000 ttimeoutlen=100
-imap jk <Esc>
+"imap jk <Esc>
 
 " split window stuff
 nnoremap <C-j> <C-w><C-J>
@@ -52,7 +52,9 @@ nnoremap cc :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap cl :exec "normal a".nr2char(getchar())."\e"<CR>
 " end reformat
 
-autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.json set ft=javascrip
+autocmd BufWritePre * %s/\s\+$//e
+
 
 " ctrl-p
 nnoremap <leader>. :CtrlPTag<cr>
@@ -64,10 +66,10 @@ let g:ctrlp_working_path_mode = 'a'
 " end ctrl-p
 
 " NERDTree
-let g:NERDTreeQuitOnOpen = 1
+" let g:NERDTreeQuitOnOpen = 1
 "
 
-" go-vim 
+" go-vim
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
@@ -96,11 +98,14 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_autosave = 1
 let g:go_play_open_browser = 0
+let g:go_auto_type_info = 1
 
-" end go-vim 
+" end go-vim
 
 if has("gui_running")
-    colorscheme slate
+  colorscheme slate
+else
+ hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 endif
 
 set laststatus=2

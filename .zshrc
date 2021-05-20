@@ -125,3 +125,4 @@ autoload -U compinit
 compinit
 
 source_if_possible $HOME/.zshrc.local
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
