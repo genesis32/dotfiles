@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get update && sudo apt-get install vim git -y
+sudo apt-get update && sudo apt-get install curl vim git -y
 
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 
@@ -12,6 +12,6 @@ pushd $HOME/.vim/
 git clone https://github.com/ctrlpvim/ctrlp.vim.git bundle/ctrlp.vim
 git clone https://github.com/scrooloose/nerdtree.git bundle/nerdtree
 git clone https://github.com/fatih/vim-go.git bundle/vim-go
-popd 
+popd
 
 
