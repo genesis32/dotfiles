@@ -109,12 +109,15 @@ let g:go_auto_type_info = 1
 
 " end go-vim
 
-if has("gui_running")
-  colorscheme nord
+colorscheme nord
+if has("gui_gtk2") || has("gui_gtk3")
+  set guifont=Ubuntu\ Mono\ 12
+elseif has("gui_macvim")
   set guifont=Menlo:h14
-else
- hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 endif
+
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
+hi Visual term=reverse cterm=reverse guibg=Grey
 
 set laststatus=2
 set statusline=
