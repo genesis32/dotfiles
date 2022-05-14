@@ -1,4 +1,11 @@
-execute pathogen#infect()
+call plug#begin()
+
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'arcticicestudio/nord-vim'
+
+call plug#end()
 
 syntax on
 filetype plugin indent on
@@ -103,7 +110,8 @@ let g:go_auto_type_info = 1
 " end go-vim
 
 if has("gui_running")
-  colorscheme slate
+  colorscheme nord
+  set guifont=Menlo:h14
 else
  hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 endif
