@@ -4,6 +4,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'arcticicestudio/nord-vim'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -26,6 +27,7 @@ set ffs=dos,unix
 set nocompatible
 set number
 set showcmd
+set nofoldenable
 
 set belloff=all
 
