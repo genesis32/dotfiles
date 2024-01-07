@@ -64,7 +64,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+--{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' } },
   { 'github/copilot.vim', tag = 'v1.13.0' }, 
@@ -73,7 +74,10 @@ require("lazy").setup({
   { 'tpope/vim-fugitive', tag='v3.7', }
 })
 
--- vim.cmd.colorscheme "catppuccin-mocha"
+-- vim.o.background = "dark" -- or "light" for light mode
+-- vim.cmd([[colorscheme gruvbox]])
+
+vim.cmd[[colorscheme tokyonight-night]]
 
 require("mason").setup()
 require("mason-lspconfig").setup{
