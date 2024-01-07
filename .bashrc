@@ -3,11 +3,24 @@ export LSCOLORS="GxFxCxDxBxegedabagaced"
 export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;50m\]\W\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
 
 if [[ $(uname) == 'Darwin' ]]; then
-  export PATH=/opt/homebrew/bin:$PATH
+  export PATH=/opt/homebrew/bin::$HOME/bin:$PATH
 fi
 
 [ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
 
 [ -f $HOME/.local.bash ] && source $HOME/.local.bash
 
+alias ssha='eval `ssh-agent -s`'
+
 alias g='git'
+alias gd='git diff'
+alias gs='git status'
+alias gl='git log'
+alias gpo='git push origin'
+alias gaa='git add .'
+alias gc='git commit'
+
+alias mc="mc --nosubshell"
+
+export EDITOR="vim"
+
