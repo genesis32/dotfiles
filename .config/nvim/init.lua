@@ -69,10 +69,11 @@ require("lazy").setup({
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' } },
   { 'github/copilot.vim', tag = 'v1.13.0' }, 
   { 'fatih/vim-go', tag = 'v1.28' },
-  { 'nvim-tree/nvim-tree.lua', tag='v0.99', }
+  { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
+  { 'tpope/vim-fugitive', tag='v3.7', }
 })
 
-vim.cmd.colorscheme "catppuccin-mocha"
+-- vim.cmd.colorscheme "catppuccin-mocha"
 
 require("mason").setup()
 require("mason-lspconfig").setup{
@@ -113,3 +114,5 @@ vim.keymap.set("n", "<leader>fo", ":NvimTreeToggle<CR>", { noremap = true, silen
 vim.keymap.set("n", "<leader>gb", ":GoBuild<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
