@@ -65,7 +65,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-  { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
+  { 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' } },
   { 'github/copilot.vim', tag = 'v1.13.0' }, 
@@ -78,6 +79,30 @@ require("lazy").setup({
 -- vim.cmd([[colorscheme gruvbox]])
 
 vim.cmd[[colorscheme tokyonight-night]]
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
+  ensure_installed = {
+    "bash",
+    "css",
+    "dockerfile",
+    "go",
+    "html",
+    "json",
+    "lua",
+    "make",
+    "terraform",
+    "yaml",
+  },
+}
+
 
 require("mason").setup()
 require("mason-lspconfig").setup{
