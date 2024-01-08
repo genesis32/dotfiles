@@ -144,4 +144,4 @@ vim.keymap.set("n", "<leader>gb", ":GoBuild<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
