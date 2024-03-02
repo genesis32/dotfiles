@@ -72,7 +72,8 @@ require("lazy").setup({
   { 'github/copilot.vim', tag = 'v1.13.0' }, 
   { 'fatih/vim-go', tag = 'v1.28' },
   { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
-  { 'tpope/vim-fugitive', tag='v3.7', }
+  { 'tpope/vim-fugitive', tag='v3.7', },
+  { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } }
 })
 
 -- vim.o.background = "dark" -- or "light" for light mode
@@ -109,6 +110,8 @@ require("mason-lspconfig").setup{
   ensure_installed = { "gopls", "bufls", "html", "tsserver", "bashls" },
 }
 
+-- default is <leader>gy
+require('gitlinker').setup()
 require('lspconfig').gopls.setup{}
 require('lspconfig').bufls.setup{}
 require('lspconfig').html.setup{}
@@ -134,7 +137,7 @@ require("nvim-tree").setup({
   renderer = { icons = { show = { git = false, folder = false, file = false, folder_arrow = false } } },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
   },
 })
 vim.keymap.set("n", "<leader>fo", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
@@ -145,3 +148,22 @@ vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent =
 vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
+
+local function toggle_quickfix()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd.copen()
+end
+
+vim.keymap.set("n", '<Leader>qt', toggle_quickfix, { desc = "Toggle Quickfix Window" })
+
+vim.keymap.set("n", "<leader>rr", ":LspRestart<CR>", { noremap = true, silent = false })
+
+vim.keymap.set("n", "<leader>wq", ":wq!<CR>", { noremap = true, silent = false })
+vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false })
+

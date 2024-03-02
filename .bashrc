@@ -20,6 +20,7 @@ alias gpo='git push origin'
 alias gaa='git add .'
 alias gc='git commit'
 
+
 alias mc="mc --nosubshell"
 
 export EDITOR="vim"
