@@ -149,18 +149,8 @@ vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = t
 
 vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
 
-local function toggle_quickfix()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win["quickfix"] == 1 then
-      vim.cmd.cclose()
-      return
-    end
-  end
-  vim.cmd.copen()
-end
-
-vim.keymap.set("n", '<Leader>qt', toggle_quickfix, { desc = "Toggle Quickfix Window" })
+vim.keymap.set("n", '<Leader>qc', ":cclose<CR>", { desc = "Close Quickfix Window" })
+vim.keymap.set("n", '<Leader>lc', ":lclose<CR>", { desc = "Close Location List Window" })
 
 vim.keymap.set("n", "<leader>rr", ":LspRestart<CR>", { noremap = true, silent = false })
 
