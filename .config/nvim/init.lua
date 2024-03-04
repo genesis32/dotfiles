@@ -132,6 +132,7 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+
 vim.g.nvim_tree_respect_buf_cwd = 1
 require("nvim-tree").setup({
   renderer = { icons = { show = { git = false, folder = false, file = false, folder_arrow = false } } },
@@ -157,3 +158,4 @@ vim.keymap.set("n", "<leader>rr", ":LspRestart<CR>", { noremap = true, silent = 
 vim.keymap.set("n", "<leader>wq", ":wq!<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false })
 
+vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
