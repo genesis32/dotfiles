@@ -8,9 +8,6 @@ fi
 
 [ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
 
-[ -f $HOME/.local.bash ] && source $HOME/.local.bash
-
-alias ssha='eval `ssh-agent -s`'
 
 alias g='git'
 alias gd='git diff'
@@ -20,8 +17,11 @@ alias gpo='git push origin'
 alias gaa='git add .'
 alias gc='git commit'
 
-
 alias mc="mc --nosubshell"
 
 export EDITOR="vim"
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
+[ -f $HOME/.local.bash ] && source $HOME/.local.bash
+
+function title () { echo -e "\033]0;$1\007"; }
