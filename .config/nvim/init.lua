@@ -69,7 +69,7 @@ require("lazy").setup({
   { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.1', build = ':TSUpdate' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' } },
-  { 'github/copilot.vim', tag = 'v1.13.0' }, 
+  { 'github/copilot.vim', tag = 'v1.24.0' },
   { 'fatih/vim-go', tag = 'v1.28' },
   { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
   { 'tpope/vim-fugitive', tag='v3.7', },
