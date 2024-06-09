@@ -10,8 +10,6 @@ fi
 
 [ -f $HOME/.local.bash ] && source $HOME/.local.bash
 
-alias ssha='eval `ssh-agent -s`'
-
 alias g='git'
 alias gd='git diff'
 alias gs='git status'
@@ -24,4 +22,4 @@ alias gc='git commit'
 alias mc="mc --nosubshell"
 
 export EDITOR="vim"
-
+export CLOUDSDK_PYTHON_SITEPACKAGES=1

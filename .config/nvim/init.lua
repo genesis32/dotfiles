@@ -68,12 +68,23 @@ require("lazy").setup({
   { 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.1', build = ':TSUpdate' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' } },
+  { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 
+    'williamboman/mason.nvim', 
+    'williamboman/mason-lspconfig.nvim' 
+    } 
+  },
   { 'github/copilot.vim', tag = 'v1.24.0' },
   { 'fatih/vim-go', tag = 'v1.28' },
   { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
   { 'tpope/vim-fugitive', tag='v3.7', },
-  { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } }
+  { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { "NeogitOrg/neogit", dependencies = {
+    "nvim-lua/plenary.nvim",         
+    "sindrets/diffview.nvim",        
+    "nvim-telescope/telescope.nvim",
+    },
+  config = true
+  }
 })
 
 -- vim.o.background = "dark" -- or "light" for light mode
@@ -141,6 +152,9 @@ require("nvim-tree").setup({
     update_cwd = false,
   },
 })
+
+require("neogit").setup()
+
 vim.keymap.set("n", "<leader>fo", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- golang
@@ -149,6 +163,10 @@ vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent =
 vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ii", ":Neogit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>il', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
+vim.api.nvim_set_keymap('v', '<leader>il', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
+
 
 vim.keymap.set("n", '<Leader>qc', ":cclose<CR>", { desc = "Close Quickfix Window" })
 vim.keymap.set("n", '<Leader>lc', ":lclose<CR>", { desc = "Close Location List Window" })
@@ -159,3 +177,10 @@ vim.keymap.set("n", "<leader>wq", ":wq!<CR>", { noremap = true, silent = false }
 vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false })
 
 vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
+
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.0
+  vim.g.neovide_cursor_trail_size = 0.0
+  vim.g.neovide_scroll_animation_length = 0.0
+end
+
