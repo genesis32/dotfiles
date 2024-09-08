@@ -33,6 +33,7 @@ set cursorline
 set clipboard+=unnamedplus
 
 noremap <F3> :set invrelativenumber<CR>
+tnoremap <Esc> <C-\><C-n>
 
 set wildignore+=node_modules/**,*.pyc
 
@@ -190,6 +191,8 @@ vim.keymap.set("n", "<leader>wq", ":wq!<CR>", { noremap = true, silent = false }
 vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false })
 
 vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
+
+
 
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.0
