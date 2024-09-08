@@ -22,7 +22,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set relativenumber
-set ffs=dos,unix
 set nocompatible
 set showcmd
 set nofoldenable
@@ -89,6 +88,9 @@ require("lazy").setup({
   }
 })
 
+require("gruber-darker").setup {
+  transparent = true,
+}
 vim.cmd([[colorscheme gruber-darker]])
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd[[colorscheme tokyonight-night]]
@@ -171,10 +173,12 @@ vim.keymap.set("n", "<leader>gb", ":GoBuild<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>ib", ":Git blame<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ii", ":Neogit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>il', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
-vim.api.nvim_set_keymap('v', '<leader>il', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
+vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tc", ":Neogit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
+vim.api.nvim_set_keymap('v', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
 
 
 vim.keymap.set("n", '<Leader>qc', ":cclose<CR>", { desc = "Close Quickfix Window" })
