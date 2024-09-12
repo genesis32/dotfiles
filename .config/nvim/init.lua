@@ -68,6 +68,7 @@ require("lazy").setup({
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
 --{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
+  { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow'},
   { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.1', build = ':TSUpdate' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 
@@ -75,7 +76,7 @@ require("lazy").setup({
     'williamboman/mason-lspconfig.nvim' 
     } 
   },
-  { 'github/copilot.vim', tag = 'v1.24.0' },
+  { 'github/copilot.vim', tag = 'v1.40.0' },
   { 'fatih/vim-go', tag = 'v1.28' },
   { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
   { 'tpope/vim-fugitive', tag='v3.7', },
@@ -115,6 +116,8 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "lua",
     "make",
+    "markdown",
+    "markdown_inline",
     "terraform",
   },
 }
@@ -122,7 +125,7 @@ require'nvim-treesitter.configs'.setup {
 
 require("mason").setup()
 require("mason-lspconfig").setup{
-  ensure_installed = { "gopls", "bufls", "html", "tsserver", "bashls" },
+  ensure_installed = { "gopls", "bufls", "html", "bashls" },
 }
 
 -- default is <leader>gy
@@ -130,7 +133,10 @@ require('gitlinker').setup()
 require('lspconfig').gopls.setup{}
 require('lspconfig').bufls.setup{}
 require('lspconfig').html.setup{}
-require('lspconfig').tsserver.setup{}
+
+require('glow').setup({
+  -- your override config
+})
 
 require('bqf').setup({
   preview = {
@@ -178,6 +184,10 @@ vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tc", ":Neogit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tp", ":Git push<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>mp", ":Glow<CR>", { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
 vim.api.nvim_set_keymap('v', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
 
