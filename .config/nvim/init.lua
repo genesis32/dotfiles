@@ -101,6 +101,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = {},
+     additional_vim_regex_highlighting = { 'markdown' },
   },
   indent = {
     enable = false,
@@ -202,11 +203,10 @@ vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false }
 
 vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
 
-
-
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.0
   vim.g.neovide_cursor_trail_size = 0.0
   vim.g.neovide_scroll_animation_length = 0.0
+  vim.o.guifont = "Hack:h12"
 end
 
