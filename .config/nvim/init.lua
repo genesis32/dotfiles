@@ -176,6 +176,13 @@ require("neogit").setup()
 
 vim.keymap.set("n", "<leader>fo", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<C-L>", "gt", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-H>", "gT", { noremap = true, silent = true })
+
+vim.keymap.set('n', '<LEADER>jd', '<cmd>lua require"telescope.builtin".lsp_definitions({})<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', '<LEADER>js', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="split"})<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', '<LEADER>jv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>', {noremap=true, silent=true})
+
 -- golang
 vim.keymap.set("n", "<leader>gb", ":GoBuild<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent = true })
@@ -184,7 +191,7 @@ vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tc", ":Neogit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tg", ":Neogit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tp", ":Git push<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>mp", ":Glow<CR>", { noremap = true, silent = true })
@@ -207,6 +214,6 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.0
   vim.g.neovide_cursor_trail_size = 0.0
   vim.g.neovide_scroll_animation_length = 0.0
-  vim.o.guifont = "Hack:h12"
+  vim.o.guifont = "Comic Mono:h12"
 end
 
