@@ -7,48 +7,60 @@ vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 
-vim.cmd([[
-syntax on
-filetype plugin indent on
-set autoread
-set nocp
-set ai
-set bs=indent,eol,start
-set hls is ic scs
-set sw=4 sts=4 et
-set ruler
-set hidden
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set relativenumber
-set nocompatible
-set showcmd
-set nofoldenable
-set colorcolumn=120
+-- Set various options
+vim.opt.autoread = true
+vim.opt.compatible = false
+vim.opt.autoindent = true
+vim.opt.backspace = { 'indent', 'eol', 'start' }
 
-set belloff=all
+-- Search options
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-set cursorline
-set clipboard+=unnamedplus
+-- Indentation and tabs
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
 
-noremap <F3> :set invrelativenumber<CR>
-tnoremap <Esc> <C-\><C-n>
+-- UI and interface options
+vim.opt.ruler = true
+vim.opt.hidden = true
+vim.opt.relativenumber = true
+vim.opt.showcmd = true
+vim.opt.foldenable = false
+vim.opt.colorcolumn = '120'
+vim.opt.belloff = 'all'
+vim.opt.cursorline = true
 
-set wildignore+=node_modules/**,*.pyc
+-- Clipboard
+vim.opt.clipboard:append('unnamedplus')
 
-set splitright
-set splitbelow
+-- Key mappings
+vim.keymap.set('n', '<F3>', ':set invrelativenumber<CR>')
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
-set laststatus=2
-set statusline=
-set statusline+=%<\                       " cut at start
-set statusline+=%2*[%n%H%M%R%W]%*\        " flags and buf no
-set statusline+=%-40f\                    " path
-set statusline+=%=%1*%y%*%*\              " file type
-set statusline+=%10((%l,%c)%)\            " line and column
-set statusline+=%P                        " percentage of file
-]])
+-- Wildignore
+vim.opt.wildignore:append({ 'node_modules/**', '*.pyc' })
+
+-- Split behavior
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Statusline
+vim.opt.laststatus = 2
+vim.opt.statusline = table.concat({
+    '%<',                    -- Cut at start
+    '%2*[%n%H%M%R%W]%*',     -- Flags and buffer number
+    '%-40f ',                -- Path
+    '%=',                    -- Align right
+    '%1*%y%*%* ',            -- File type
+    '%10((%l,%c)%) ',        -- Line and column
+    '%P'                     -- Percentage of file
+})
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -89,6 +101,9 @@ require("lazy").setup({
   config = true
   }
 })
+
+vim.opt.syntax = 'on'
+vim.cmd('TSEnable highlight') 
 
 require("gruber-darker").setup {
   transparent = true,
@@ -211,9 +226,13 @@ vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false }
 vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
 
 if vim.g.neovide then
-  vim.g.neovide_cursor_animation_length = 0.0
-  vim.g.neovide_cursor_trail_size = 0.0
-  vim.g.neovide_scroll_animation_length = 0.0
-  vim.o.guifont = "Comic Mono:h12"
+    vim.g.neovide_position_animation_length = 0
+    vim.g.neovide_cursor_animation_length = 0.00
+    vim.g.neovide_cursor_trail_size = 0
+    vim.g.neovide_cursor_animate_in_insert_mode = false
+    vim.g.neovide_cursor_animate_command_line = false
+    vim.g.neovide_scroll_animation_far_lines = 0
+    vim.g.neovide_scroll_animation_length = 0.00
+    vim.o.guifont = "Comic Mono:h14"
 end
 
