@@ -76,7 +76,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { "thimc/gruber-darker.nvim", priority = 1000 , config = true },
+  { "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
 --{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
@@ -105,9 +105,7 @@ require("lazy").setup({
 vim.opt.syntax = 'on'
 vim.cmd('TSEnable highlight') 
 
-require("gruber-darker").setup {
-  transparent = true,
-}
+require("gruber-darker").setup {}
 vim.cmd([[colorscheme gruber-darker]])
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd[[colorscheme tokyonight-night]]
@@ -214,7 +212,6 @@ vim.keymap.set("n", "<leader>mp", ":Glow<CR>", { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
 vim.api.nvim_set_keymap('v', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
 
-
 vim.keymap.set("n", '<Leader>qc', ":cclose<CR>", { desc = "Close Quickfix Window" })
 vim.keymap.set("n", '<Leader>lc', ":lclose<CR>", { desc = "Close Location List Window" })
 
@@ -233,6 +230,6 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_command_line = false
     vim.g.neovide_scroll_animation_far_lines = 0
     vim.g.neovide_scroll_animation_length = 0.00
-    vim.o.guifont = "Comic Mono:h14"
+    vim.o.guifont = "Comic Mono:h13"
 end
 
