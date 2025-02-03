@@ -80,7 +80,6 @@ require("lazy").setup({
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
 --{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
-  { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow'},
   { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.1', build = ':TSUpdate' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 
@@ -203,18 +202,12 @@ require'nvim-treesitter.configs'.setup {
 
 require("mason").setup()
 require("mason-lspconfig").setup{
-  ensure_installed = { "gopls", "bufls", "html", "bashls" },
+  ensure_installed = { "gopls", "html", "bashls" },
 }
 
--- default is <leader>gy
 require('gitlinker').setup()
 require('lspconfig').gopls.setup{}
-require('lspconfig').bufls.setup{}
 require('lspconfig').html.setup{}
-
-require('glow').setup({
-  -- your override config
-})
 
 require('bqf').setup({
   preview = {
@@ -238,7 +231,6 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 require("nvim-tree").setup({
@@ -271,8 +263,6 @@ vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { noremap = true, silent = tr
 vim.keymap.set("n", "<leader>tg", ":Neogit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tp", ":Git push<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>mp", ":Glow<CR>", { noremap = true, silent = true })
-
 vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
 vim.api.nvim_set_keymap('v', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
 
@@ -294,6 +284,6 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_command_line = false
     vim.g.neovide_scroll_animation_far_lines = 0
     vim.g.neovide_scroll_animation_length = 0.00
-    vim.o.guifont = "Comic Mono:h13"
+    vim.o.guifont = "Fira Code:h16"
 end
 

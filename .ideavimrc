@@ -11,6 +11,9 @@ set hlsearch
 set ideamarks
 set clipboard+=unnamed
 
+set visualbell
+set noerrorbells
+
 map <C-o> :action Back<CR>
 map <C-i> :action Forward<CR>
 
