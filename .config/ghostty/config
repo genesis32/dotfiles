@@ -1,0 +1,10 @@
+font-family = "Comic Mono"
+font-family = "Fira Code"
+font-size = 16
+theme = "iTerm2 Smoooooth"
+
+keybind = cmd+b=esc:b
+keybind = cmd+f=esc:f
+keybind = cmd+d=esc:d
+keybind = cmd+s=new_split:right
+keybind = cmd+shift+s=new_split:down
