@@ -76,19 +76,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
+--{ "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
---{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
+  { 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
-  { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.1', build = ':TSUpdate' },
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'neovim/nvim-lspconfig', tag = 'v0.1.7', dependencies = { 
+  { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.3', build = ':TSUpdate' },
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'neovim/nvim-lspconfig', tag = 'v2.0.0', dependencies = { 
     'williamboman/mason.nvim', 
     'williamboman/mason-lspconfig.nvim' 
     } 
   },
-  { 'fatih/vim-go', tag = 'v1.28' },
-  { 'nvim-tree/nvim-tree.lua', tag='v0.99', },
+  { 'fatih/vim-go' },
+  { 'nvim-tree/nvim-tree.lua', tag='v1.11', },
   { 'tpope/vim-fugitive', tag='v3.7', },
   { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { "NeogitOrg/neogit", dependencies = {
@@ -168,10 +168,10 @@ require("lazy").setup({
 vim.opt.syntax = 'on'
 vim.cmd('TSEnable highlight') 
 
-require("gruber-darker").setup {}
-vim.cmd([[colorscheme gruber-darker]])
+-- require("gruber-darker").setup {}
+-- vim.cmd([[colorscheme gruber-darker]])
 -- vim.cmd([[colorscheme gruvbox]])
--- vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd[[colorscheme tokyonight-moon]]
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -284,6 +284,6 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_command_line = false
     vim.g.neovide_scroll_animation_far_lines = 0
     vim.g.neovide_scroll_animation_length = 0.00
-    vim.o.guifont = "Fira Code:h16"
+    vim.o.guifont = "JetBrains Mono:h16"
 end
 
