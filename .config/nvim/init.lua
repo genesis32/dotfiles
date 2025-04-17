@@ -78,7 +78,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 --{ "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
 --{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-  { 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
+--{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -165,13 +165,13 @@ require("lazy").setup({
   },
 })
 
-vim.opt.syntax = 'on'
-vim.cmd('TSEnable highlight') 
-
 -- require("gruber-darker").setup {}
 -- vim.cmd([[colorscheme gruber-darker]])
 -- vim.cmd([[colorscheme gruvbox]])
 -- vim.cmd[[colorscheme tokyonight-moon]]
+
+vim.opt.syntax = 'on'
+vim.cmd('TSEnable highlight') 
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -239,7 +239,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-
 require("mason").setup()
 require("mason-lspconfig").setup{
   ensure_installed = { "gopls", "html", "bashls", "eslint" },
@@ -268,6 +267,7 @@ require('telescope').setup {
     },
   },
 }
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 -- Install ripgrep.
