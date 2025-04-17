@@ -16,6 +16,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   export PATH=/opt/homebrew/bin::$HOME/bin:$PATH
 fi
 
+export PATH=$PATH:$HOME/go/bin
+
 # [ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash
 
 alias g='git'

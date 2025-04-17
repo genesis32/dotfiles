@@ -87,9 +87,8 @@ require("lazy").setup({
     'williamboman/mason-lspconfig.nvim' 
     } 
   },
-  { 'fatih/vim-go' },
   { 'nvim-tree/nvim-tree.lua', tag='v1.11', },
-  { 'tpope/vim-fugitive', tag='v3.7', },
+--  { 'tpope/vim-fugitive', tag='v3.7', },
   { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { "NeogitOrg/neogit", dependencies = {
       "nvim-lua/plenary.nvim",         
@@ -202,12 +201,15 @@ require'nvim-treesitter.configs'.setup {
 
 require("mason").setup()
 require("mason-lspconfig").setup{
-  ensure_installed = { "gopls", "html", "bashls" },
+  ensure_installed = { "gopls", "html", "bashls", "eslint" },
 }
 
 require('gitlinker').setup()
-require('lspconfig').gopls.setup{}
-require('lspconfig').html.setup{}
+
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.eslint.setup{}
 
 require('bqf').setup({
   preview = {
@@ -248,14 +250,8 @@ vim.keymap.set("n", "<leader>fo", ":NvimTreeToggle<CR>", { noremap = true, silen
 vim.keymap.set("n", "<C-L>", "gt", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-H>", "gT", { noremap = true, silent = true })
 
-vim.keymap.set('n', '<LEADER>jd', '<cmd>lua require"telescope.builtin".lsp_definitions({})<CR>', {noremap=true, silent=true})
-vim.keymap.set('n', '<LEADER>js', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="split"})<CR>', {noremap=true, silent=true})
-vim.keymap.set('n', '<LEADER>jv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>', {noremap=true, silent=true})
-
--- golang
-vim.keymap.set("n", "<leader>gb", ":GoBuild<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>gr", ":GoReferrers<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>gc", ":GoCallers<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', 'gsd', '<cmd>sp<CR><cmd>lua vim.lsp.buf.definition()<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', 'gvd', '<cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>', {noremap=true, silent=true})
 
 vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
