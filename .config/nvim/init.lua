@@ -81,7 +81,7 @@ require("lazy").setup({
   { 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
   { 'nvim-treesitter/nvim-treesitter', tag= 'v0.9.3', build = ':TSUpdate' },
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'neovim/nvim-lspconfig', tag = 'v2.0.0', dependencies = { 
     'williamboman/mason.nvim', 
     'williamboman/mason-lspconfig.nvim' 
@@ -252,6 +252,9 @@ vim.keymap.set("n", "<C-H>", "gT", { noremap = true, silent = true })
 
 vim.keymap.set('n', 'gsd', '<cmd>sp<CR><cmd>lua vim.lsp.buf.definition()<CR>', {noremap=true, silent=true})
 vim.keymap.set('n', 'gvd', '<cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>', {noremap=true, silent=true})
+
+vim.keymap.set('n', '<leader>gr', '<cmd>Telescope lsp_references<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', '<leader>gd', '<cmd>Telescope lsp_definitions<CR>', {noremap=true, silent=true})
 
 vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
