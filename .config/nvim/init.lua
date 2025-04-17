@@ -171,7 +171,7 @@ vim.cmd('TSEnable highlight')
 -- require("gruber-darker").setup {}
 -- vim.cmd([[colorscheme gruber-darker]])
 -- vim.cmd([[colorscheme gruvbox]])
-vim.cmd[[colorscheme tokyonight-moon]]
+-- vim.cmd[[colorscheme tokyonight-moon]]
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -282,6 +282,15 @@ require("nvim-tree").setup({
     enable = true,
     update_cwd = false,
   },
+  view = { adaptive_size = true },
+})
+
+vim.diagnostic.config({
+  virtual_text = true,  -- Show diagnostics as virtual text
+  signs = true,         -- Show signs in the sign column
+  underline = true,     -- Underline the text with an error
+  update_in_insert = false,
+  severity_sort = true,
 })
 
 require("neogit").setup()
@@ -300,8 +309,7 @@ vim.keymap.set('n', '<leader>gd', '<cmd>Telescope lsp_definitions<CR>', {noremap
 vim.keymap.set("n", "<leader>tb", ":Git blame<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>td", ":Git diff<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tt", ":terminal<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tg", ":Neogit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tp", ":Git push<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ng", ":Neogit<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {silent = true})
 vim.api.nvim_set_keymap('v', '<leader>tl', '<cmd>lua require"gitlinker".get_buf_range_url(mode, user_opts)<CR>', {})
