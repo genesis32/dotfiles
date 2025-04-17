@@ -88,7 +88,7 @@ require("lazy").setup({
     } 
   },
   { 'nvim-tree/nvim-tree.lua', tag='v1.11', },
---  { 'tpope/vim-fugitive', tag='v3.7', },
+  { 'tpope/vim-fugitive', tag='v3.7', },
   { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { "NeogitOrg/neogit", dependencies = {
       "nvim-lua/plenary.nvim",         
