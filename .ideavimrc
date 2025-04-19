@@ -1,0 +1,27 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader = " "
+
+set relativenumber
+set ignorecase
+set hlsearch
+set ideamarks
+set clipboard+=unnamed
+
+set visualbell
+set noerrorbells
+
+map <C-o> :action Back<CR>
+map <C-i> :action Forward<CR>
+
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(Run)
+map <leader>n <Action>(GotoNextError)
+map <leader>fo <Action>(GotoFile)
+map <leader>ff <Action>(SearchEverywhere)
+map <leader>gr <Action>(FindUsages)
+map <leader>gd <Action>(GotoDeclaration)
+map <leader>gi <Action>(GotoImplementation)
