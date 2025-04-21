@@ -76,9 +76,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
---{ "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
---{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
---{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -123,7 +120,12 @@ require("lazy").setup({
                   expand = function(args)
                       luasnip.lsp_expand(args.body)
                   end,
-              },
+              }, 
+              enabled = function()
+                local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
+                local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+                return filetype ~= "text"
+              end,
               window = {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
@@ -164,11 +166,6 @@ require("lazy").setup({
       end
   },
 })
-
--- require("gruber-darker").setup {}
--- vim.cmd([[colorscheme gruber-darker]])
--- vim.cmd([[colorscheme gruvbox]])
--- vim.cmd[[colorscheme tokyonight-moon]]
 
 vim.opt.syntax = 'on'
 vim.cmd('TSEnable highlight') 
@@ -247,6 +244,26 @@ require("mason-lspconfig").setup{
 require('gitlinker').setup()
 
 require'lspconfig'.gopls.setup{}
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    local offset_encoding = client and client.offset_encoding or 'utf-16'
+    local params = vim.lsp.util.make_range_params(0, offset_encoding)
+    params.context = {only = {"source.organizeImports"}}
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+    for cid, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+          vim.lsp.util.apply_workspace_edit(r.edit, enc)
+        end
+      end
+    end
+    vim.lsp.buf.format({async = false})
+  end
+})
+
 require'lspconfig'.html.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.eslint.setup{}
@@ -291,6 +308,21 @@ vim.diagnostic.config({
   underline = true,     -- Underline the text with an error
   update_in_insert = false,
   severity_sort = true,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  callback = function(args)
+    -- 2
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      -- 3
+      buffer = args.buf,
+      callback = function()
+        -- 4 + 5
+        vim.lsp.buf.format {async = false, id = args.data.client_id }
+      end,
+    })
+  end
 })
 
 require("neogit").setup()
