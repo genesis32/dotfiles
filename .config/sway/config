@@ -7,7 +7,7 @@
 gaps inner 10
 
 # Background
-output * background /home/ddm/.config/sway/bg/bg0.png fill
+output * background /home/ddm/.config/sway/bg/blue.png fill
 
 ### Variables
 #
