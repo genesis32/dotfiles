@@ -76,9 +76,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
---{ "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true },
---{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
---{ 'folke/tokyonight.nvim', lazy = false, priority = 1000, opts = {}, },
+  { "blazkowolf/gruber-darker.nvim", priority = 1000 , config = true, opts = {} },
   { 'kevinhwang91/nvim-bqf', tag= 'v1.1.1' },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -150,10 +148,8 @@ require("lazy").setup({
   },
 })
 
--- require("gruber-darker").setup {}
--- vim.cmd([[colorscheme gruber-darker]])
--- vim.cmd([[colorscheme gruvbox]])
--- vim.cmd[[colorscheme tokyonight-moon]]
+require("gruber-darker").setup {}
+vim.cmd([[colorscheme gruber-darker]])
 
 vim.opt.syntax = 'on'
 vim.cmd('TSEnable highlight') 
