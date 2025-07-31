@@ -25,3 +25,7 @@ map <leader>ff <Action>(SearchEverywhere)
 map <leader>gr <Action>(FindUsages)
 map <leader>gd <Action>(GotoDeclaration)
 map <leader>gi <Action>(GotoImplementation)
+
+map <leader>mo <Action>(MoveEditorToOppositeTabGroup)
+
+nnoremap <leader>gvd :vsplit<CR>gd
