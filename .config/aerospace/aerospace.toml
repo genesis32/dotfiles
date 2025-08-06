@@ -84,7 +84,13 @@ automatically-unhide-macos-hidden-apps = true
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    alt-enter = 'exec-and-forget open -na Kitty'
+    #alt-enter = 'exec-and-forget open -na Kitty'
+    alt-enter = '''exec-and-forget osascript -e '
+    tell application "Kitty"
+        activate
+        do shell script "/Applications/kitty.app/Contents/MacOS/kitty @ --to unix:/tmp/mykitty launch --type=os-window"
+    end tell'
+    '''
 
     alt-f = 'fullscreen'
 
