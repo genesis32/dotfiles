@@ -22,7 +22,7 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 #set $menu wmenu-run
-set $menu "rofi -combi-modi window,drun,ssh,run -show combi -show-icons"
+set $menu "rofi -combi-modi drun,run,file-browser -show combi -show-icons"
 
 include /etc/sway/config-vars.d/*
 

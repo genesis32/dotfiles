@@ -6,8 +6,8 @@
     "margin": 0,
     "modules-left": ["sway/workspaces", "sway/mode"],
     
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "clock", "idle_inhibitor", "tray"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "idle_inhibitor", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,

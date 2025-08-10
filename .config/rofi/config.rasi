@@ -1,2 +1,11 @@
-//@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
-@theme "/home/ddm/.local/share/rofi/themes/squared-nord.rasi"
+@theme "/usr/share/rofi/themes/arthur.rasi"
+
+configuration {
+    display-drun: "";
+    display-window: "";
+}
+
+
+window {
+  width: 20%;
+}
