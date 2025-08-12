@@ -348,7 +348,7 @@ vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
-vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>c", ":noh<CR>", { noremap = true, silent = true })
 
 if vim.g.neovide then
     vim.g.neovide_position_animation_length = 0
