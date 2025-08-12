@@ -7,6 +7,7 @@ vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 
+
 -- Set various options
 vim.opt.autoread = true
 vim.opt.compatible = false
@@ -346,6 +347,8 @@ vim.keymap.set("n", "<leader>qa", ":qa!<CR>", { noremap = true, silent = false }
 vim.keymap.set('n', '<Leader>wt', [[:%s/\s\+$//e<cr>]])
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
+vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { noremap = true, silent = true })
 
 if vim.g.neovide then
     vim.g.neovide_position_animation_length = 0
