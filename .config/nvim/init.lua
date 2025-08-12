@@ -86,7 +86,7 @@ require("lazy").setup({
     'williamboman/mason-lspconfig.nvim' 
     } 
   },
-  { 'nvim-tree/nvim-tree.lua', tag='v1.11', },
+  { 'nvim-tree/nvim-tree.lua', tag='v1.14.0', },
   { 'tpope/vim-fugitive', tag='v3.7', },
   { 'ruifm/gitlinker.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { "NeogitOrg/neogit", dependencies = {
@@ -109,11 +109,14 @@ require("lazy").setup({
               enabled = function()
                 local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
                 local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+                if buftype == "prompt" then
+                  return false
+                end
                 return filetype ~= "text"
               end,
               window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
+                  completion = cmp.config.window.bordered(),
+                  documentation = cmp.config.window.bordered(),
               },
               mapping = cmp.mapping.preset.insert({
                   ['<C-e>'] = cmp.mapping.abort(),
@@ -267,7 +270,7 @@ require('telescope').setup {
       "vendor/",
       ".git/",
       "node_modules/",
-    },
+    }, 
   },
 }
 
