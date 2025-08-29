@@ -227,7 +227,8 @@ input "type:touchpad" {
     tap enabled
     tap_button_map lrm
     accel_profile adaptive
-    pointer_accel 0.75 
+    pointer_accel 0.50 
+    scroll_factor 0.25
 }
 
 bindgesture swipe:right workspace next
