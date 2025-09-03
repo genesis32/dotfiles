@@ -38,20 +38,18 @@ set {
     $popup floating enable; border pixel 4; sticky enable; shadows enable
 }
 
-# Ensure CopyQ is always floating instead of tiled.
-for_window [app_id="com.github.hluk.copyq"] $popup
-
-# Chrome meet windows should always be floating.
-for_window [app_id="google-chrome" title="^Meet - "] $popup
-
+# Floating windows
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
 for_window [window_type="dialog"] floating enable
-
 for_window [app_id="pavucontrol"] $popup
+for_window [app_id="galculator"] $popup
+for_window [app_id="google-chrome" title="^Meet - "] $popup
+for_window [app_id="com.github.hluk.copyq"] $popup
 
 # start CopyQ on startup
 exec copyq --start-server
+
 # open CopyQ with the shortcut Super+C
 bindsym Mod4+c exec copyq toggle
 
@@ -100,6 +98,7 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+
 # Ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
