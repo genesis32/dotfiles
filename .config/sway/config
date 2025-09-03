@@ -35,7 +35,7 @@ exec --no-startup-id /usr/share/libpam-kwallet-common/pam_kwallet_init
 exec mako
 
 set {
-    $popup floating enable; border pixel 4; sticky enable; shadows enable
+    $popup floating enable; border pixel 4; sticky disable; shadows enable
 }
 
 # Floating windows
@@ -44,7 +44,7 @@ for_window [window_role="dialog"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [app_id="pavucontrol"] $popup
 for_window [app_id="galculator"] $popup
-for_window [app_id="google-chrome" title="^Meet - "] $popup
+for_window [app_id="google-chrome"] $popup
 for_window [app_id="com.github.hluk.copyq"] $popup
 
 # start CopyQ on startup
