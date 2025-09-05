@@ -1,2 +1,7 @@
+[general]
+    import = [
+    "~/.config/alacritty/themes/hyper.toml"
+]
+
 [selection]
   save_to_clipboard = true
