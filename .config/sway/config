@@ -21,6 +21,7 @@ set $menu "rofi -combi-modi drun,run,file-browser -show combi -show-icons"
 include /etc/sway/config-vars.d/*
 
 # This will lock your screen after 5 minutes of inactivity, then turn off
+ 
 # your displays after another 30 minutes, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
@@ -31,11 +32,19 @@ exec swayidle -w \
 # Use kwallet.
 exec --no-startup-id /usr/share/libpam-kwallet-common/pam_kwallet_init
 
+exec_always /usr/bin/swtchrd
+
+# Set up keybinds to open the window switcher.
+bindsym Mod1+Tab mode swtchr; exec /usr/bin/swtchr
+
+# This is important! More information below.
+mode swtchr bindsym Backspace mode default
+
 # Notifications
 exec mako
 
 set {
-    $popup floating enable; border pixel 4; sticky disable; shadows enable
+    $popup floating enable; border pixel 2; sticky disable; shadows enable
 }
 
 # Floating windows
@@ -246,7 +255,7 @@ bindsym $mod+o output eDP-1 toggle
 
 # Window borders
 default_border pixel 2
-default_floating_border pixel 4
+default_floating_border pixel 2
 
 set $grey       #323232
 set $lightblue  #3daee9
