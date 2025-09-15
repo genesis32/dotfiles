@@ -3,5 +3,9 @@
     "~/.config/alacritty/themes/hyper.toml"
 ]
 
+[font]
+    normal = { family = "JetBrains Mono", style = "Regular" }
+    size = 16.0
+
 [selection]
   save_to_clipboard = true
