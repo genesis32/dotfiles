@@ -9,23 +9,23 @@ set relativenumber
 set ignorecase
 set hlsearch
 set ideamarks
-set clipboard+=unnamed
-
-set visualbell
-set noerrorbells
 
 map <C-o> :action Back<CR>
 map <C-i> :action Forward<CR>
 
+" map <leader>tl <Action>(Github.Open.In.Browser)
+
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(Run)
 map <leader>n <Action>(GotoNextError)
+map <leader>v <Action>(MoveTabRight)
 map <leader>fo <Action>(GotoFile)
 map <leader>ff <Action>(SearchEverywhere)
 map <leader>gr <Action>(FindUsages)
 map <leader>gd <Action>(GotoDeclaration)
 map <leader>gi <Action>(GotoImplementation)
-
 map <leader>mo <Action>(MoveEditorToOppositeTabGroup)
 
 nnoremap <leader>gvd :vsplit<CR>gd
+
+

@@ -1,9 +1,12 @@
 return {
-  { "blazkowolf/gruber-darker.nvim" },
+  -- add gruvbox
+  { "ellisonleao/gruvbox.nvim" },
+
+  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruber-darker",
+      colorscheme = "gruvbox",
     },
   },
 }
