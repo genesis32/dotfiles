@@ -1,0 +1,20 @@
+window-decoration = client
+window-padding-x = 4
+window-padding-y = 4
+
+split-divider-color = #007700
+font-family = "JetBrains Mono"
+font-feature = -calt, -liga, -dlig
+theme = "Rose Pine"
+font-size = 15
+
+copy-on-select = clipboard
+
+keybind = alt+s=new_split:right
+keybind = alt+shift+s=new_split:down
+
+keybind = unconsumed:alt+k=goto_split:previous
+keybind = unconsumed:alt+l=goto_split:next
+keybind = unconsumed:alt+t=new_tab
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
