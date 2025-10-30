@@ -19,6 +19,10 @@ set number
 set showcmd
 set nofoldenable
 
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+map <leader>qa :qa<cr>
+
 set belloff=all
 
 set cursorline
@@ -36,6 +40,11 @@ nnoremap <F2> :exec "execute '%!python -m json.tool'" <CR>
 nnoremap cc :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap cl :exec "normal a".nr2char(getchar())."\e"<CR>
 " end reformat
+
+map <leader>tn :tabnew<cr>
+map <leader>tl :tabnext<cr>
+map <leader>th :tabprevious<cr>
+map <leader>tc :tabclose<cr>
 
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
 hi Visual term=reverse cterm=reverse guibg=Grey
