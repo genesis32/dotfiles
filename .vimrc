@@ -12,12 +12,12 @@ set hidden
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set number
 set ffs=dos,unix
 set nocompatible
-set number
 set showcmd
 set nofoldenable
+
+set relativenumber
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
