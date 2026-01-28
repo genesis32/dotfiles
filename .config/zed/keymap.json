@@ -10,12 +10,13 @@
     "context": "Workspace",
     "bindings": {
       "shift shift": "file_finder::Toggle",
-      "super-f1": "workspace::ToggleLeftDock",
-      "super-f2": "workspace::ToggleBottomDock",
-      "super-f3": "workspace::ToggleRightDock",
-      "alt-t": "workspace::NewTerminal",
+      "ctrl-`": "workspace::ToggleBottomDock",
       "f10": "debugger::StepOver",
       "f11": "debugger::StepInto",
+      "space d a": "workspace::ToggleAllDocks",
+      "space d b": "workspace::ToggleBottomDock",
+      "space d l": "workspace::ToggleLeftDock",
+      "space d r": "workspace::ToggleRightDock",
     },
   },
   {
