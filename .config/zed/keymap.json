@@ -10,9 +10,9 @@
     "context": "Workspace",
     "bindings": {
       "shift shift": "file_finder::Toggle",
-      "alt-f1": "workspace::ToggleLeftDock",
-      "alt-f2": "workspace::ToggleBottomDock",
-      "alt-f3": "workspace::ToggleRightDock",
+      "super-f1": "workspace::ToggleLeftDock",
+      "super-f2": "workspace::ToggleBottomDock",
+      "super-f3": "workspace::ToggleRightDock",
       "alt-t": "workspace::NewTerminal",
       "f10": "debugger::StepOver",
       "f11": "debugger::StepInto",
