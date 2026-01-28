@@ -1,0 +1,30 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "alt-f1": "workspace::ToggleLeftDock",
+      "alt-f2": "workspace::ToggleBottomDock",
+      "alt-f3": "workspace::ToggleRightDock",
+      "alt-t": "workspace::NewTerminal",
+      "f10": "debugger::StepOver",
+      "f11": "debugger::StepInto",
+    },
+  },
+  {
+    "context": "VimControl && !menu && vim_mode == normal",
+    "bindings": {
+      "space g r": "editor::FindAllReferences",
+      "space g d": "editor::GoToDefinition",
+      "space g v": "editor::GoToDefinitionSplit",
+      "space f f": "file_finder::Toggle",
+    },
+  },
+]

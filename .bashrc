@@ -34,3 +34,4 @@ export EDITOR="vi"
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 [ -f $HOME/.local.bash ] && source $HOME/.local.bash
+export PATH="$HOME/.local/bin:$PATH"

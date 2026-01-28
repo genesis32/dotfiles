@@ -58,7 +58,10 @@ set statusline+=%=%1*%y%*%*\              " file type
 set statusline+=%10((%l,%c)%)\            " line and column
 set statusline+=%P                        " percentage of file
 
- if has('gui_running')
+colorscheme habamax
+
+if has('gui_running')
     set guioptions=
     colorscheme slate
- endif
+endif
+
