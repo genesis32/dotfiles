@@ -13,6 +13,7 @@
   "features": {
     "edit_prediction_provider": "zed",
   },
+  "double_click_in_multibuffer": "open",
   "relative_line_numbers": "enabled",
   "vim_mode": true,
   "ui_font_size": 16,
