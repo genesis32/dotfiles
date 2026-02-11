@@ -45,7 +45,7 @@ vim.opt.backspace     = { "indent", "eol", "start" }
 
 -- ── Line numbers ─────────────────────────────────────────
 vim.opt.relativenumber = true
-vim.opt.number         = true          -- show absolute on current line
+-- vim.opt.number         = true          -- show absolute on current line
 
 -- ── Search ───────────────────────────────────────────────
 vim.opt.hlsearch   = true
