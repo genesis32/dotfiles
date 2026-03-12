@@ -32,7 +32,54 @@ require("lazy").setup({
       vim.cmd("colorscheme nightfox")
     end,
   },
+  {
+    'nvim-telescope/telescope.nvim', version = '*',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    }
+  },
+  { "williamboman/mason.nvim", opts = {} },
+  { "williamboman/mason-lspconfig.nvim", opts = {} },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- This function runs every time a language server attaches to a buffer
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          -- Enable keybindings
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "gvd", definition_split_vertical, opts)
+        end,
+      })
+
+      -- Automatically set up language servers installed via Mason
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "pyright", "bashls", "gopls" },
+        automatic_installation = true,
+      })
+    end,
+  },
 })
+
+function definition_split_vertical()
+  vim.lsp.buf.definition({
+    on_list = function(options)
+      -- Open the first item in a vertical split if multiple are found
+      if #options.items > 0 then
+        local item = options.items[1]
+        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
+        vim.cmd(cmd)
+      end
+    end,
+  })
+end
 
 -- ── General ──────────────────────────────────────────────
 vim.opt.autoread      = true
@@ -98,6 +145,13 @@ map("n", "<leader>tn", ":tabnew<CR>",      { desc = "New tab" })
 map("n", "<leader>tl", ":tabnext<CR>",     { desc = "Next tab" })
 map("n", "<leader>th", ":tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>tc", ":tabclose<CR>",    { desc = "Close tab" })
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
