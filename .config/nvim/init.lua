@@ -61,7 +61,7 @@ require("lazy").setup({
 
       -- Automatically set up language servers installed via Mason
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "bashls", "gopls" },
+        ensure_installed = { "lua_ls", "pyright", "bashls", "gopls", "ts_ls" },
         automatic_installation = true,
       })
     end,
