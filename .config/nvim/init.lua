@@ -66,6 +66,32 @@ require("lazy").setup({
       })
     end,
   },
+  {
+  "github/copilot.vim",
+  config = function()
+
+    -- Only show suggestions when manually triggered
+    vim.g.copilot_enabled = false  -- off by default
+
+    -- Manually trigger suggestion
+    vim.keymap.set("i", "<C-x>", "<Plug>(copilot-suggest)", { silent = true })
+
+    -- Accept suggestion
+    vim.keymap.set("i", "<C-y>", function()
+      local suggestion = vim.fn["copilot#Accept"]("")
+      if suggestion ~= "" then
+        vim.api.nvim_feedkeys(suggestion, "n", true)
+      end
+    end, { silent = true })
+
+    -- Dismiss suggestion
+    vim.keymap.set("i", "<C-e>", "<Plug>(copilot-dismiss)", { silent = true })
+
+    -- Next / prev suggestion
+    vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { silent = true })
+    vim.keymap.set("i", "<C-k>", "<Plug>(copilot-previous)", { silent = true })
+  end,
+  }
 })
 
 function definition_split_vertical()
