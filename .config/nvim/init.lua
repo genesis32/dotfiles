@@ -172,6 +172,12 @@ map("n", "<leader>tl", ":tabnext<CR>",     { desc = "Next tab" })
 map("n", "<leader>th", ":tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>tc", ":tabclose<CR>",    { desc = "Close tab" })
 
+-- Quickfix list
+map("n", "<leader>cn", ":cnext<CR>",    { desc = "Next Entry" })
+map("n", "<leader>cp", ":cprev<CR>",    { desc = "Previous Entry" })
+map("n", "<leader>co", ":copen<CR>",    { desc = "Open Quickfix List" })
+map("n", "<leader>cc", ":cclose<CR>",    { desc = "Close Quickfix List" })
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
