@@ -91,6 +91,33 @@ require("lazy").setup({
     vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { silent = true })
     vim.keymap.set("i", "<C-k>", "<Plug>(copilot-previous)", { silent = true })
   end,
+  },
+  {
+  "ray-x/go.nvim",
+  dependencies = {  -- optional packages
+    "ray-x/guihua.lua",
+    "neovim/nvim-lspconfig",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  opts = function()
+
+    require("go").setup(opts)
+    local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.go",
+      callback = function()
+      require('go.format').goimports()
+      end,
+      group = format_sync_grp,
+    })
+    return {
+      -- lsp_keymaps = false,
+      -- other options
+    }
+  end,
+  event = {"CmdlineEnter"},
+  ft = {"go", 'gomod'},
+  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   }
 })
 
@@ -184,6 +211,11 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
+-- Quickfix list
+map("n", "<leader>cn", ":cnext<CR>", { desc = "Next Quickfix Entry" })
+map("n", "<leader>cp", ":cprev<CR>", { desc = "Previous Quickfix Entry" })
+map("n", "<leader>co", ":copen<CR>", { desc = "Open Quickfix List" })
+map("n", "<leader>cc", ":cclose<CR>", { desc = "Close Quickfix List" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
