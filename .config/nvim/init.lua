@@ -178,6 +178,11 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
+-- Quickfix list
+map("n", "<leader>cn", ":cnext<CR>", { desc = "Next Quickfix Entry" })
+map("n", "<leader>cp", ":cprev<CR>", { desc = "Previous Quickfix Entry" })
+map("n", "<leader>co", ":copen<CR>", { desc = "Open Quickfix List" })
+map("n", "<leader>cc", ":cclose<CR>", { desc = "Close Quickfix List" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
