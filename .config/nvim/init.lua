@@ -14,6 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
+
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
   {
@@ -91,6 +93,15 @@ require("lazy").setup({
     vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { silent = true })
     vim.keymap.set("i", "<C-k>", "<Plug>(copilot-previous)", { silent = true })
   end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    opts = {
+      ensure_installed = { "go", "bash", "python", "javascript", "typescript", "terraform", "c", "cpp" },
+      highlight = { enable = true },
+      auto_install = true,
+    },
   },
   {
   "ray-x/go.nvim",
