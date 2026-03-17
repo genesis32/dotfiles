@@ -95,7 +95,7 @@ require("lazy").setup({
   end,
   },
   {
-    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter', -- Install treesitter cli - npm install tree-sitter-cli
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter').setup({
