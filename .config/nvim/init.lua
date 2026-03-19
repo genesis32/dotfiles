@@ -23,14 +23,7 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     config = function()
-      require("nightfox").setup({
-        options = {
-          styles = {
-            comments = "italic",
-            keywords = "bold",
-          },
-        },
-      })
+      require("nightfox")
       vim.cmd("colorscheme nightfox")
     end,
   },
@@ -117,7 +110,6 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
   },
   opts = function()
-
     require("go").setup(opts)
     local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
     vim.api.nvim_create_autocmd("BufWritePre", {
