@@ -189,7 +189,13 @@ require("lazy").setup({
         }),
       })
     end,
-  },    
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      word_diff = true
+    },
+  },
 })
 
 function definition_split_vertical()
@@ -282,8 +288,9 @@ map("n", "<leader>cp", ":cprev<CR>", { desc = "Previous Quickfix Entry" })
 map("n", "<leader>co", ":copen<CR>", { desc = "Open Quickfix List" })
 map("n", "<leader>cc", ":cclose<CR>", { desc = "Close Quickfix List" })
 
--- neogit
+-- git
 map("n", "<leader>gg", ":Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>gb", ":Gitsigns blame<CR>", { desc = "Git Blame" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
