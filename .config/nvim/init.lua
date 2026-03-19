@@ -135,7 +135,69 @@ require("lazy").setup({
   event = {"CmdlineEnter"},
   ft = {"go", 'gomod'},
   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  }
+  },
+	{
+		"NeogitOrg/neogit",
+		lazy = true,
+		dependencies = {
+			"nvim-lua/plenary.nvim",         -- required
+			-- Only one of these is needed.
+			"sindrets/diffview.nvim",        -- optional
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+		},
+		cmd = "Neogit",
+	},
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",   -- LSP source
+      "hrsh7th/cmp-buffer",      -- buffer words
+      "hrsh7th/cmp-path",        -- file paths
+      "L3MON4D3/LuaSnip",        -- snippet engine (required)
+      "saadparwaiz1/cmp_luasnip" -- snippet source for cmp
+    },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        completion = {
+            autocomplete = false,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-n>"]  = cmp.mapping(function()
+            if cmp.visible() then cmp.close()
+            else cmp.complete() end
+          end),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"]     = cmp.mapping.abort(),
+          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"]     = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }, {
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end,
+  },    
 })
 
 function definition_split_vertical()
@@ -227,6 +289,9 @@ map("n", "<leader>cn", ":cnext<CR>", { desc = "Next Quickfix Entry" })
 map("n", "<leader>cp", ":cprev<CR>", { desc = "Previous Quickfix Entry" })
 map("n", "<leader>co", ":copen<CR>", { desc = "Open Quickfix List" })
 map("n", "<leader>cc", ":cclose<CR>", { desc = "Close Quickfix List" })
+
+-- neogit
+map("n", "<leader>gg", ":Neogit<CR>", { desc = "Neogit" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
