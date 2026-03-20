@@ -19,12 +19,12 @@ vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
   {
-    "EdenEast/nightfox.nvim",
+    --"EdenEast/nightfox.nvim",
+    "RostislavArts/naysayer.nvim",
     lazy = false,
     priority = 1000,
     config = function()
---     require("nightfox")
---     vim.cmd("colorscheme nightfox")
+     vim.cmd.colorscheme("naysayer")
     end,
   },
   {
