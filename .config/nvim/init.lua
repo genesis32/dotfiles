@@ -23,8 +23,8 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     config = function()
-      require("nightfox")
-      vim.cmd("colorscheme nightfox")
+--     require("nightfox")
+--     vim.cmd("colorscheme nightfox")
     end,
   },
   {
@@ -269,6 +269,8 @@ map("n", "<Space>", "<Nop>", { silent = true })
 
 -- Quit all
 map("n", "<leader>qa", ":qa<CR>", { desc = "Quit all" })
+
+map("n", "<leader>/", ":noh<CR>", { desc = "Clear search" })
 
 -- Tab management
 map("n", "<leader>tn", ":tabnew<CR>",      { desc = "New tab" })
