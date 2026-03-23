@@ -54,9 +54,17 @@ require("lazy").setup({
       })
 
       -- Automatically set up language servers installed via Mason
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls", "pyright", "bashls", "gopls", "ts_ls" },
         automatic_installation = true,
+        handlers = {
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+        },
       })
     end,
   },
@@ -93,6 +101,11 @@ require("lazy").setup({
       require('nvim-treesitter').setup({
         ensure_installed = { "go", "bash", "python", "javascript", "typescript", "terraform", "c", "cpp" },
         auto_install = true,
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
     end,
   },
