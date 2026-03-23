@@ -15,6 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
 
+-- ── Leader key ───────────────────────────────────────────
+vim.g.mapleader = " "
+
 local function definition_split_vertical()
   vim.lsp.buf.definition({
     on_list = function(options)
@@ -121,29 +124,29 @@ require("lazy").setup({
     end,
   },
   {
-		"fatih/vim-go",
-		ft = "go",
+    "fatih/vim-go",
+    ft = "go",
     build = ":GoInstallBinaries",
-		config = function()
-			vim.g.go_fmt_autosave = 1
-			vim.g.go_fmt_command = "goimports"
+    config = function()
+      vim.g.go_fmt_autosave = 1
+      vim.g.go_fmt_command = "goimports"
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "go",
         callback = function()
           vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
         end,
       })
-		end,
+    end,
   },
-	{
-		"NeogitOrg/neogit",
-		lazy = true,
-		dependencies = {
-			"nvim-lua/plenary.nvim",         -- required
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		cmd = "Neogit",
-	},
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -232,7 +235,7 @@ vim.opt.expandtab   = true
 vim.opt.cursorline  = true
 vim.opt.laststatus  = 2
 vim.opt.ruler       = true
-vim.opt.termguicolors = true           -- needed for nightfox to look right
+vim.opt.termguicolors = true
 
 -- ── Splits ───────────────────────────────────────────────
 vim.opt.splitbelow = true
@@ -251,9 +254,6 @@ vim.opt.statusline = table.concat({
   "%10((%l,%c)%) ",         -- line and column
   "%P",                     -- percentage of file
 })
-
--- ── Leader key ───────────────────────────────────────────
-vim.g.mapleader = " "
 
 local map = vim.keymap.set
 map("n", "<Space>", "<Nop>", { silent = true })
