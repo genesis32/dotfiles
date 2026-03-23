@@ -1,11 +1,10 @@
 -- ==========================================================
 -- Neovim init.lua — converted from _vimrc
--- Theme: nightfox (via lazy.nvim)
 -- ==========================================================
 
 -- ── Bootstrap lazy.nvim ──────────────────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -15,6 +14,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
+
+local function definition_split_vertical()
+  vim.lsp.buf.definition({
+    on_list = function(options)
+      if #options.items > 0 then
+        local item = options.items[1]
+        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
+        vim.cmd(cmd)
+      end
+    end,
+  })
+end
 
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
@@ -87,7 +98,7 @@ require("lazy").setup({
     end, { silent = true })
 
     -- Dismiss suggestion
-    vim.keymap.set("i", "<C-e>", "<Plug>(copilot-dismiss)", { silent = true })
+    vim.keymap.set("i", "<C-]>", "<Plug>(copilot-dismiss)", { silent = true })
 
     -- Next / prev suggestion
     vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { silent = true })
@@ -116,7 +127,12 @@ require("lazy").setup({
 		config = function()
 			vim.g.go_fmt_autosave = 1
 			vim.g.go_fmt_command = "goimports"
-      vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "go",
+        callback = function()
+          vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
+        end,
+      })
 		end,
   },
 	{
@@ -186,26 +202,13 @@ require("lazy").setup({
   },
 })
 
-function definition_split_vertical()
-  vim.lsp.buf.definition({
-    on_list = function(options)
-      -- Open the first item in a vertical split if multiple are found
-      if #options.items > 0 then
-        local item = options.items[1]
-        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
-        vim.cmd(cmd)
-      end
-    end,
-  })
-end
-
 -- ── General ──────────────────────────────────────────────
 vim.opt.autoread      = true
 vim.opt.hidden        = true
 vim.opt.showcmd       = true
 vim.opt.belloff       = "all"
 vim.opt.foldenable    = false
-vim.opt.fileformats   = { "dos", "unix" }
+vim.opt.fileformats   = { "unix", "dos" }
 vim.opt.backspace     = { "indent", "eol", "start" }
 
 -- ── Line numbers ─────────────────────────────────────────
