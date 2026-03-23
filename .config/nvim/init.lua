@@ -31,7 +31,6 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', version = '*',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        -- optional but recommended
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     }
   },
@@ -88,54 +87,30 @@ require("lazy").setup({
   end,
   },
   {
-    'nvim-treesitter/nvim-treesitter', -- Install treesitter cli - npm install tree-sitter-cli
+    'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter').setup({
         ensure_installed = { "go", "bash", "python", "javascript", "typescript", "terraform", "c", "cpp" },
         auto_install = true,
       })
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          pcall(vim.treesitter.start)
-        end,
-      })
     end,
   },
   {
-  "ray-x/go.nvim",
-  dependencies = {  -- optional packages
-    "ray-x/guihua.lua",
-    "neovim/nvim-lspconfig",
-    "nvim-treesitter/nvim-treesitter",
-  },
-  opts = function()
-    require("go").setup(opts)
-    local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*.go",
-      callback = function()
-      require('go.format').goimports()
-      end,
-      group = format_sync_grp,
-    })
-    return {
-      -- lsp_keymaps = false,
-      -- other options
-    }
-  end,
-  event = {"CmdlineEnter"},
-  ft = {"go", 'gomod'},
-  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+		"fatih/vim-go",
+		ft = "go",
+    build = ":GoInstallBinaries",
+		config = function()
+			vim.g.go_fmt_autosave = 1
+			vim.g.go_fmt_command = "goimports"
+      vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
+		end,
   },
 	{
 		"NeogitOrg/neogit",
 		lazy = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",         -- required
-			-- Only one of these is needed.
-			"sindrets/diffview.nvim",        -- optional
-			-- Only one of these is needed.
 			"nvim-telescope/telescope.nvim", -- optional
 		},
 		cmd = "Neogit",
