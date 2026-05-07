@@ -1,11 +1,10 @@
 -- ==========================================================
 -- Neovim init.lua — converted from _vimrc
--- Theme: nightfox (via lazy.nvim)
 -- ==========================================================
 
 -- ── Bootstrap lazy.nvim ──────────────────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -15,6 +14,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
+
+-- ── Leader key ───────────────────────────────────────────
+vim.g.mapleader = " "
+
+local function definition_split_vertical()
+  vim.lsp.buf.definition({
+    on_list = function(options)
+      if #options.items > 0 then
+        local item = options.items[1]
+        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
+        vim.cmd(cmd)
+      end
+    end,
+  })
+end
 
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
@@ -31,7 +45,6 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', version = '*',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        -- optional but recommended
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     }
   },
@@ -55,9 +68,17 @@ require("lazy").setup({
       })
 
       -- Automatically set up language servers installed via Mason
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls", "pyright", "bashls", "gopls", "ts_ls" },
         automatic_installation = true,
+        handlers = {
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+        },
       })
     end,
   },
@@ -80,7 +101,7 @@ require("lazy").setup({
     end, { silent = true })
 
     -- Dismiss suggestion
-    vim.keymap.set("i", "<C-e>", "<Plug>(copilot-dismiss)", { silent = true })
+    vim.keymap.set("i", "<C-]>", "<Plug>(copilot-dismiss)", { silent = true })
 
     -- Next / prev suggestion
     vim.keymap.set("i", "<C-j>", "<Plug>(copilot-next)", { silent = true })
@@ -88,7 +109,7 @@ require("lazy").setup({
   end,
   },
   {
-    'nvim-treesitter/nvim-treesitter', -- Install treesitter cli - npm install tree-sitter-cli
+    'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter').setup({
@@ -103,43 +124,29 @@ require("lazy").setup({
     end,
   },
   {
-  "ray-x/go.nvim",
-  dependencies = {  -- optional packages
-    "ray-x/guihua.lua",
-    "neovim/nvim-lspconfig",
-    "nvim-treesitter/nvim-treesitter",
+    "fatih/vim-go",
+    ft = "go",
+    build = ":GoInstallBinaries",
+    config = function()
+      vim.g.go_fmt_autosave = 1
+      vim.g.go_fmt_command = "goimports"
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "go",
+        callback = function()
+          vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
+        end,
+      })
+    end,
   },
-  opts = function()
-    require("go").setup(opts)
-    local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*.go",
-      callback = function()
-      require('go.format').goimports()
-      end,
-      group = format_sync_grp,
-    })
-    return {
-      -- lsp_keymaps = false,
-      -- other options
-    }
-  end,
-  event = {"CmdlineEnter"},
-  ft = {"go", 'gomod'},
-  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
   },
-	{
-		"NeogitOrg/neogit",
-		lazy = true,
-		dependencies = {
-			"nvim-lua/plenary.nvim",         -- required
-			-- Only one of these is needed.
-			"sindrets/diffview.nvim",        -- optional
-			-- Only one of these is needed.
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		cmd = "Neogit",
-	},
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -198,26 +205,13 @@ require("lazy").setup({
   },
 })
 
-function definition_split_vertical()
-  vim.lsp.buf.definition({
-    on_list = function(options)
-      -- Open the first item in a vertical split if multiple are found
-      if #options.items > 0 then
-        local item = options.items[1]
-        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
-        vim.cmd(cmd)
-      end
-    end,
-  })
-end
-
 -- ── General ──────────────────────────────────────────────
 vim.opt.autoread      = true
 vim.opt.hidden        = true
 vim.opt.showcmd       = true
 vim.opt.belloff       = "all"
 vim.opt.foldenable    = false
-vim.opt.fileformats   = { "dos", "unix" }
+vim.opt.fileformats   = { "unix", "dos" }
 vim.opt.backspace     = { "indent", "eol", "start" }
 
 -- ── Line numbers ─────────────────────────────────────────
@@ -241,7 +235,7 @@ vim.opt.expandtab   = true
 vim.opt.cursorline  = true
 vim.opt.laststatus  = 2
 vim.opt.ruler       = true
-vim.opt.termguicolors = true           -- needed for nightfox to look right
+vim.opt.termguicolors = true
 
 -- ── Splits ───────────────────────────────────────────────
 vim.opt.splitbelow = true
@@ -260,9 +254,6 @@ vim.opt.statusline = table.concat({
   "%10((%l,%c)%) ",         -- line and column
   "%P",                     -- percentage of file
 })
-
--- ── Leader key ───────────────────────────────────────────
-vim.g.mapleader = " "
 
 local map = vim.keymap.set
 map("n", "<Space>", "<Nop>", { silent = true })
