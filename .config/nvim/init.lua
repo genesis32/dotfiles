@@ -275,6 +275,8 @@ map("n", "<leader>tl", ":tabnext<CR>",     { desc = "Next tab" })
 map("n", "<leader>th", ":tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>tc", ":tabclose<CR>",    { desc = "Close tab" })
 
+map("n", "<leader>ll", ":Lexplore<CR>",    { desc = "List files." })
+
 -- Quickfix list
 map("n", "<leader>cn", ":cnext<CR>",    { desc = "Next Entry" })
 map("n", "<leader>cp", ":cprev<CR>",    { desc = "Previous Entry" })
