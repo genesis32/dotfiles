@@ -213,6 +213,8 @@ vim.opt.belloff       = "all"
 vim.opt.foldenable    = false
 vim.opt.fileformats   = { "unix", "dos" }
 vim.opt.backspace     = { "indent", "eol", "start" }
+vim.opt.clipboard     = "unnamedplus"
+
 
 -- ── Line numbers ─────────────────────────────────────────
 vim.opt.relativenumber = true
@@ -293,3 +295,19 @@ map("n", "<leader>gb", ":Gitsigns blame<CR>", { desc = "Git Blame" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
+
+if vim.g.neovide == true then
+
+  -- Disable all animations in Neovide
+  vim.g.neovide_cursor_animation_length = 0.00
+  vim.g.neovide_cursor_trail_size = 0
+  vim.g.neovide_scroll_animation_length = 0.00
+  vim.g.neovide_position_animation_length = 0
+
+  if vim.fn.has("macunix") == 1 then
+    vim.keymap.set('v', '<D-c>', '"+y')
+    vim.keymap.set('!', '<D-v>', '<C-R>+')
+    vim.keymap.set('n', '<D-s>', ':w<CR>')
+  end
+end
+
