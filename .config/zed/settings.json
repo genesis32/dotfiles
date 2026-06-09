@@ -7,11 +7,34 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "edit_predictions": {
-    "mode": "eager"
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
   },
-  "features": {
-    "edit_prediction_provider": "zed",
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "mode": "eager",
   },
   "double_click_in_multibuffer": "open",
   "relative_line_numbers": "enabled",
