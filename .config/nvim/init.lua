@@ -37,12 +37,12 @@ end
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
   {
-    --"EdenEast/nightfox.nvim",
-    "RostislavArts/naysayer.nvim",
+    "EdenEast/nightfox.nvim",
+--  "RostislavArts/naysayer.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-     vim.cmd.colorscheme("naysayer")
+     vim.cmd.colorscheme("nightfox")
     end,
   },
   {
