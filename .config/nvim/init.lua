@@ -37,12 +37,12 @@ end
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
   {
-    --"EdenEast/nightfox.nvim",
-    "RostislavArts/naysayer.nvim",
+    "EdenEast/nightfox.nvim",
+--  "RostislavArts/naysayer.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-     vim.cmd.colorscheme("naysayer")
+     vim.cmd.colorscheme("nightfox")
     end,
   },
   {
@@ -274,6 +274,8 @@ map("n", "<leader>tn", ":tabnew<CR>",      { desc = "New tab" })
 map("n", "<leader>tl", ":tabnext<CR>",     { desc = "Next tab" })
 map("n", "<leader>th", ":tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>tc", ":tabclose<CR>",    { desc = "Close tab" })
+
+map("n", "<leader>ll", ":Lexplore<CR>",    { desc = "List files." })
 
 -- Quickfix list
 map("n", "<leader>cn", ":cnext<CR>",    { desc = "Next Entry" })
