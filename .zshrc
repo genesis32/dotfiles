@@ -122,3 +122,5 @@ mdotenv() {
   set -a; source "${1:-.env}"; set +a
 }
 
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
