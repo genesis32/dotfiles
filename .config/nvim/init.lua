@@ -270,10 +270,10 @@ map("n", "<leader>qa", ":qa<CR>", { desc = "Quit all" })
 map("n", "<leader>/", ":noh<CR>", { desc = "Clear search" })
 
 -- Tab management
-map("n", "<leader>tn", ":tabnew<CR>",      { desc = "New tab" })
-map("n", "<leader>tl", ":tabnext<CR>",     { desc = "Next tab" })
-map("n", "<leader>th", ":tabprevious<CR>", { desc = "Previous tab" })
-map("n", "<leader>tc", ":tabclose<CR>",    { desc = "Close tab" })
+map("n", "<leader>tc", ":tabnew<CR>",      { desc = "New tab" })
+map("n", "<leader>tn", ":tabnext<CR>",     { desc = "Next tab" })
+map("n", "<leader>tp", ":tabprevious<CR>", { desc = "Previous tab" })
+map("n", "<leader>tx", ":tabclose<CR>",    { desc = "Close tab" })
 
 map("n", "<leader>ll", ":Lexplore<CR>",    { desc = "List files." })
 
