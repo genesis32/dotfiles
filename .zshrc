@@ -118,8 +118,6 @@ local nix_indicator=""
 [[ -n "$IN_NIX_SHELL" || -n "$NIX_BUILD_TOP" ]] && nix_indicator="❄️ "
 PROMPT="${nix_indicator}${PROMPT}"
 
-alias rtp='cd /Users/ddm/proj/realtimepayments && nix-shell --run zsh $argv'
-
 mdotenv() {
   set -a; source "${1:-.env}"; set +a
 }
