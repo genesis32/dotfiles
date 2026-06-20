@@ -36,3 +36,5 @@ export EDITOR='vim'
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
