@@ -38,3 +38,9 @@ export EDITOR='vim'
 
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
+
+autoload -U edit-command-line
+bindkey '^x^e' edit-command-line
+export EDITOR="vim"
+
+alias ls='ls --color'

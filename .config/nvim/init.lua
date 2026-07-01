@@ -42,6 +42,19 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     config = function()
+     require("nightfox").setup({
+      palettes = {
+        nightfox = {
+          comment = "#41e954", -- Overrides the comment palette color to bright green
+        },
+      },
+       groups = {
+        all = {
+          Comment = { fg = "palette.comment" },
+          String = { fg = "palette.comment" }, -- Redirects strings to use the exact same green
+        },
+      },
+     })
      vim.cmd.colorscheme("nightfox")
     end,
   },
