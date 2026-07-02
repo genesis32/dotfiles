@@ -44,3 +44,7 @@ bindkey '^x^e' edit-command-line
 export EDITOR="vim"
 
 alias ls='ls --color'
+
+if command -v neovide >/dev/null 2>&1; then
+	nvide() { nohup neovide "$@" >/dev/null 2>&1 &! }
+fi 
