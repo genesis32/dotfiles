@@ -1,3 +1,5 @@
+
+DISABLE_AUTO_UPDATE=true
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 if [[ -d "/opt/homebrew/bin" ]]; then
