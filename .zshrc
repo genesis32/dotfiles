@@ -1,5 +1,4 @@
-
-DISABLE_AUTO_UPDATE=true
+zstyle ':omz:update' mode disabled
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 if [[ -d "/opt/homebrew/bin" ]]; then
