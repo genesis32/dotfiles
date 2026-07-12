@@ -9,22 +9,24 @@
   {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle",
-      "ctrl-`": "workspace::ToggleBottomDock",
       "f10": "debugger::StepOver",
       "f11": "debugger::StepInto",
-      "space d a": "workspace::ToggleAllDocks",
-      "space d b": "workspace::ToggleBottomDock",
-      "space d l": "workspace::ToggleLeftDock",
-      "space d r": "workspace::ToggleRightDock",
     },
   },
   {
     "context": "VimControl && !menu && vim_mode == normal",
     "bindings": {
+      "shift shift": "file_finder::Toggle",
+
+      "space d a": "workspace::ToggleAllDocks",
+      "space d b": "workspace::ToggleBottomDock",
+      "space d l": "workspace::ToggleLeftDock",
+      "space d r": "workspace::ToggleRightDock",
+
       "space g r": "editor::FindAllReferences",
       "space g d": "editor::GoToDefinition",
       "space g v": "editor::GoToDefinitionSplit",
+
       "space f f": "file_finder::Toggle",
     },
   },

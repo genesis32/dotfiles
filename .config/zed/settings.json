@@ -8,10 +8,12 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent_servers": {
-    "opencode": {
-      "type": "registry"
-    },
     "claude-acp": {
+      "default_config_options": {
+        "mode": "plan",
+        "effort": "medium",
+        "fast": "off"
+      },
       "type": "registry"
     }
   },
@@ -27,8 +29,6 @@
   "agent": {
     "sidebar_side": "right",
     "dock": "right",
-    "favorite_models": [],
-    "model_parameters": []
   },
   "project_panel": {
     "dock": "left"
@@ -43,7 +43,7 @@
   "buffer_font_size": 16,
   "theme": {
     "mode": "dark",
-    "light": "One Light",
-    "dark": "Ayu Dark",
+    "light": "Nightfox - opaque",
+    "dark": "Nightfox - opaque",
   },
 }
