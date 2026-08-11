@@ -271,10 +271,10 @@ map("n", "<leader>co", ":copen<CR>",    { desc = "Open Quickfix List" })
 map("n", "<leader>cc", ":cclose<CR>",    { desc = "Close Quickfix List" })
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+map('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- Quickfix list
 map("n", "<leader>cn", ":cnext<CR>", { desc = "Next Quickfix Entry" })
@@ -288,6 +288,9 @@ map("n", "<leader>gb", ":Gitsigns blame<CR>", { desc = "Git Blame" })
 
 -- Format JSON with python
 map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
+
+-- Terminal mode
+map('t', '<Esc><Esc>', [[<C-\><C-n>]])
 
 if vim.g.neovide == true then
 
