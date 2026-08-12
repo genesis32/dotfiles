@@ -18,9 +18,15 @@ vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
 -- ── Leader key ───────────────────────────────────────────
 vim.g.mapleader = " "
 
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_winsize = 25
+-- For using nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+-- For using netrw
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_winsize = 25
 
 local function definition_split_vertical()
   vim.lsp.buf.definition({
@@ -57,6 +63,13 @@ require("lazy").setup({
      })
      vim.cmd.colorscheme("nightfox")
     end,
+  },
+  {
+  "nvim-tree/nvim-tree.lua",
+  dependencies = { },
+  config = function()
+    require("nvim-tree").setup {}
+  end,
   },
   {
     'nvim-telescope/telescope.nvim', version = '*',
