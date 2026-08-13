@@ -315,10 +315,10 @@ map("n", "<leader>fo", ":NvimTreeToggle<CR>", { desc = "Neogit" })
 if vim.g.neovide == true then
 
   -- Disable all animations in Neovide
-  vim.g.neovide_cursor_animation_length = 0.00
-  vim.g.neovide_cursor_trail_size = 0
-  vim.g.neovide_scroll_animation_length = 0.00
-  vim.g.neovide_position_animation_length = 0
+--  vim.g.neovide_cursor_animation_length = 0.00
+--  vim.g.neovide_cursor_trail_size = 0
+--  vim.g.neovide_scroll_animation_length = 0.00
+--  vim.g.neovide_position_animation_length = 0
 
   if vim.fn.has("macunix") == 1 then
     vim.keymap.set('v', '<D-c>', '"+y')
