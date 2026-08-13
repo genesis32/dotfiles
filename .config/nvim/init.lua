@@ -68,7 +68,11 @@ require("lazy").setup({
   "nvim-tree/nvim-tree.lua",
   dependencies = { },
   config = function()
-    require("nvim-tree").setup {}
+    require("nvim-tree").setup {
+	git = {
+	 ignore = false
+	},
+    }
   end,
   },
   {
@@ -304,6 +308,9 @@ map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
 
 -- Terminal mode
 map('t', '<Esc><Esc>', [[<C-\><C-n>]])
+
+-- NvimTree
+map("n", "<leader>fo", ":NvimTreeToggle<CR>", { desc = "Neogit" })
 
 if vim.g.neovide == true then
 
