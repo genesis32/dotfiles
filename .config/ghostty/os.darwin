@@ -1,0 +1,11 @@
+# macOS-only settings. Linked to ~/.config/ghostty/os.conf by install.sh.
+
+font-thicken = true
+
+keybind = cmd+s=new_split:right
+keybind = cmd+shift+s=new_split:down
+
+keybind = cmd+k=goto_split:previous
+keybind = cmd+l=goto_split:next
+keybind = cmd+t=new_tab
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
