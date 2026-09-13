@@ -9,7 +9,11 @@ split-divider-color = #007700
 font-family = "JetBrains Mono"
 font-feature = -calt, -liga, -dlig
 theme = "Rose Pine"
-font-size = 16
+font-size = 14
 
 copy-on-select = clipboard
 shell-integration-features = ssh-env
+
+keybind = alt+bracket_right=goto_split:next
+keybind = alt+bracket_left=goto_split:previous
+
