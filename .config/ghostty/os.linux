@@ -9,4 +9,4 @@ keybind = alt+shift+s=new_split:down
 keybind = alt+k=goto_split:previous
 keybind = alt+l=goto_split:next
 keybind = alt+t=new_tab
-# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
