@@ -1,11 +1,3 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "auto_update": false,
   "agent_servers": {
@@ -29,22 +21,22 @@
   },
   "agent": {
     "sidebar_side": "right",
-    "dock": "right",
+    "dock": "right"
   },
   "project_panel": {
     "dock": "left"
   },
   "edit_predictions": {
-    "mode": "eager",
+    "mode": "eager"
   },
   "double_click_in_multibuffer": "open",
   "relative_line_numbers": "enabled",
   "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
   "theme": {
     "mode": "dark",
     "light": "Nightfox - opaque",
-    "dark": "Nightfox - opaque",
-  },
+    "dark": "Nightfox - opaque"
+  }
 }
