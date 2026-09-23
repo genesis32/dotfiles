@@ -1,12 +1,6 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
+<<<<<<< HEAD
      "bindings": {
        "f1": "project_panel::ToggleFocus",
        "f2": "git_panel::ToggleFocus",
@@ -15,12 +9,22 @@
        "f5": "agents_sidebar::ToggleThreadSwitcher"
      }
    },
+=======
+    "bindings": {
+      "f1": "project_panel::ToggleFocus",
+      "f2": "git_panel::ToggleFocus",
+      "f3": "editor::ToggleFocus",
+      "f4": "agent::FocusAgent",
+      "f5": "agents_sidebar::ToggleThreadSwitcher"
+    }
+  },
+>>>>>>> 9eaf03e89e8b75d2c372507f366031eeb3104dfe
   {
     "context": "Workspace",
     "bindings": {
       "f10": "debugger::StepOver",
-      "f11": "debugger::StepInto",
-    },
+      "f11": "debugger::StepInto"
+    }
   },
   {
     "context": "VimControl && !menu && vim_mode == normal",
@@ -37,7 +41,13 @@
       "space g v": "editor::GoToDefinitionSplit",
 
       "space f g": "workspace::NewSearch",
+<<<<<<< HEAD
       "space f f": "file_finder::Toggle",
     },
   },
+=======
+      "space f f": "file_finder::Toggle"
+    }
+  }
+>>>>>>> 9eaf03e89e8b75d2c372507f366031eeb3104dfe
 ]

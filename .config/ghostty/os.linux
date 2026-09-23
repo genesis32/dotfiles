@@ -6,7 +6,12 @@ window-decoration = client
 keybind = alt+s=new_split:right
 keybind = alt+shift+s=new_split:down
 
-keybind = alt+k=goto_split:previous
-keybind = alt+l=goto_split:next
 keybind = alt+t=new_tab
+<<<<<<< HEAD
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+=======
+
+keybind = alt+bracket_right=goto_split:next
+keybind = alt+bracket_left=goto_split:previous
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+>>>>>>> 9eaf03e89e8b75d2c372507f366031eeb3104dfe
