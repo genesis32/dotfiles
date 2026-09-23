@@ -1,7 +1,6 @@
 -- ==========================================================
 -- Neovim init.lua — converted from _vimrc
 -- ==========================================================
-
 -- ── Bootstrap lazy.nvim ──────────────────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -42,28 +41,6 @@ end
 
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
-  {
-    "EdenEast/nightfox.nvim",
---  "RostislavArts/naysayer.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-     require("nightfox").setup({
-      palettes = {
-        nightfox = {
-          comment = "#41e954", -- Overrides the comment palette color to bright green
-        },
-      },
-       groups = {
-        all = {
-          Comment = { fg = "palette.comment" },
-          String = { fg = "palette.comment" }, -- Redirects strings to use the exact same green
-        },
-      },
-     })
-     vim.cmd.colorscheme("nightfox")
-    end,
-  },
   {
   "nvim-tree/nvim-tree.lua",
   dependencies = { },
@@ -330,4 +307,6 @@ if vim.g.neovide == true then
    vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
    vim.keymap.set({ "n" , "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
 end
+
+vim.cmd('colorscheme retrobox')
 

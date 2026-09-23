@@ -46,6 +46,9 @@ export EDITOR="vim"
 
 alias ls='ls --color'
 
+alias gs='git status'
+alias gd='git diff'
+
 if command -v neovide >/dev/null 2>&1; then
 	nv() { nohup neovide "$@" >/dev/null 2>&1 &! }
 fi 
