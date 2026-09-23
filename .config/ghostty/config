@@ -8,14 +8,10 @@ window-padding-y = 4
 split-divider-color = #007700
 font-family = "JetBrains Mono"
 font-feature = -calt, -liga, -dlig
-<<<<<<< HEAD
-# theme = "Rose Pine"
 theme = "Gruvbox dark"
-font-size = 16
-=======
-theme = "Rose Pine"
 font-size = 14
->>>>>>> 9eaf03e89e8b75d2c372507f366031eeb3104dfe
+# theme = "Rose Pine"
+# font-size = 14
 
 
 copy-on-select = clipboard
