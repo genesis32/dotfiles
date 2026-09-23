@@ -8,8 +8,10 @@ window-padding-y = 4
 split-divider-color = #007700
 font-family = "JetBrains Mono"
 font-feature = -calt, -liga, -dlig
-theme = "Rose Pine"
+# theme = "Rose Pine"
+theme = "Gruvbox dark"
 font-size = 16
+
 
 copy-on-select = clipboard
 shell-integration-features = ssh-env

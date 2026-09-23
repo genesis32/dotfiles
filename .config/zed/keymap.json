@@ -7,6 +7,15 @@
 // from the command palette.
 [
   {
+     "bindings": {
+       "f1": "project_panel::ToggleFocus",
+       "f2": "git_panel::ToggleFocus",
+       "f3": "editor::ToggleFocus",
+       "f4": "agent::FocusAgent",
+       "f5": "agents_sidebar::ToggleThreadSwitcher"
+     }
+   },
+  {
     "context": "Workspace",
     "bindings": {
       "f10": "debugger::StepOver",
@@ -27,6 +36,7 @@
       "space g d": "editor::GoToDefinition",
       "space g v": "editor::GoToDefinitionSplit",
 
+      "space f g": "workspace::NewSearch",
       "space f f": "file_finder::Toggle",
     },
   },
