@@ -42,15 +42,29 @@ end
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
   {
-  "nvim-tree/nvim-tree.lua",
-  dependencies = { },
-  config = function()
-    require("nvim-tree").setup {
-	git = {
-	 ignore = false
-	},
-    }
-  end,
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { },
+    config = function()
+      require("nvim-tree").setup {
+        renderer = {
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = false,
+              git = false,
+              modified = false,
+              hidden = false,
+              diagnostics = false,
+              bookmarks = false,
+            },
+          },
+        },
+        git = {
+          ignore = false
+        },
+      }
+    end,
   },
   {
     'nvim-telescope/telescope.nvim', version = '*',
