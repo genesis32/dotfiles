@@ -1,0 +1,11 @@
+@theme "/usr/share/rofi/themes/arthur.rasi"
+
+configuration {
+    display-drun: "";
+    display-window: "";
+}
+
+
+window {
+  width: 20%;
+}

@@ -1,0 +1,344 @@
+-- ==========================================================
+-- Neovim init.lua — converted from _vimrc
+-- ==========================================================
+-- ── Bootstrap lazy.nvim ──────────────────────────────────
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site")
+
+-- ── Leader key ───────────────────────────────────────────
+vim.g.mapleader = " "
+
+-- For using nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+-- For using netrw
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_winsize = 25
+
+local function definition_split_vertical()
+  vim.lsp.buf.definition({
+    on_list = function(options)
+      if #options.items > 0 then
+        local item = options.items[1]
+        local cmd = "vsplit +" .. item.lnum .. " " .. item.filename .. " | normal " .. item.col .. "|"
+        vim.cmd(cmd)
+      end
+    end,
+  })
+end
+
+-- ── Plugins ──────────────────────────────────────────────
+require("lazy").setup({
+  {
+    "blazkowolf/gruber-darker.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("gruber-darker").setup({ italic = { strings = false } })
+      vim.cmd.colorscheme("gruber-darker")
+    end,
+  },
+  {
+    "linrongbin16/gitlinker.nvim",
+    cmd = "GitLink",
+    opts = {},
+    keys = {
+      { "<leader>gy", "<cmd>GitLink<cr>",  mode = { "n", "v" }, desc = "Copy git permalink" },
+      { "<leader>gY", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git permalink" },
+    },
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { },
+    config = function()
+      require("nvim-tree").setup {
+        renderer = {
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = false,
+              git = false,
+              modified = false,
+              hidden = false,
+              diagnostics = false,
+              bookmarks = false,
+            },
+          },
+        },
+        git = {
+          ignore = false
+        },
+      }
+    end,
+  },
+  {
+    'nvim-telescope/telescope.nvim', version = '*',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    }
+  },
+  { "williamboman/mason.nvim", opts = {} },
+  { "williamboman/mason-lspconfig.nvim", opts = {} },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- This function runs every time a language server attaches to a buffer
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          -- Enable keybindings
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "gvd", definition_split_vertical, opts)
+        end,
+      })
+
+      -- Automatically set up language servers installed via Mason
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "pyright", "bashls", "gopls", "ts_ls" },
+        automatic_installation = true,
+        handlers = {
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+        },
+      })
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter').setup({
+        ensure_installed = { "go", "bash", "python", "javascript", "typescript", "terraform", "c", "cpp" },
+        auto_install = true,
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+    end,
+  },
+  {
+    "fatih/vim-go",
+    ft = "go",
+    build = ":GoInstallBinaries",
+    config = function()
+      vim.g.go_fmt_autosave = 1
+      vim.g.go_fmt_command = "goimports"
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "go",
+        callback = function()
+          vim.keymap.set("n", "<leader>dt", ":GoTest<CR>", { buffer = true, silent = true, desc = "Go Test" })
+        end,
+      })
+    end,
+  },
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",   -- LSP source
+      "hrsh7th/cmp-buffer",      -- buffer words
+      "hrsh7th/cmp-path",        -- file paths
+      "L3MON4D3/LuaSnip",        -- snippet engine (required)
+      "saadparwaiz1/cmp_luasnip" -- snippet source for cmp
+    },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        completion = {
+            autocomplete = false,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-n>"]  = cmp.mapping(function()
+            if cmp.visible() then cmp.close()
+            else cmp.complete() end
+          end),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"]     = cmp.mapping.abort(),
+          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"]     = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }, {
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      word_diff = true
+    },
+  },
+})
+
+-- ── General ──────────────────────────────────────────────
+vim.opt.autoread      = true
+vim.opt.hidden        = true
+vim.opt.showcmd       = true
+vim.opt.belloff       = "all"
+vim.opt.foldenable    = false
+vim.opt.fileformats   = { "unix", "dos" }
+vim.opt.backspace     = { "indent", "eol", "start" }
+vim.opt.clipboard     = "unnamedplus"
+
+
+-- ── Line numbers ─────────────────────────────────────────
+vim.opt.relativenumber = true
+-- vim.opt.number         = true          -- show absolute on current line
+
+-- ── Search ───────────────────────────────────────────────
+vim.opt.hlsearch   = true
+vim.opt.incsearch  = true
+vim.opt.ignorecase = true
+vim.opt.smartcase  = true
+
+-- ── Indentation ──────────────────────────────────────────
+vim.opt.autoindent  = true
+vim.opt.tabstop     = 2
+vim.opt.shiftwidth  = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab   = true
+
+-- ── Appearance ───────────────────────────────────────────
+vim.opt.cursorline  = true
+vim.opt.laststatus  = 2
+vim.opt.ruler       = true
+vim.opt.termguicolors = true
+
+-- ── Splits ───────────────────────────────────────────────
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- ── Wildmenu ─────────────────────────────────────────────
+vim.opt.wildmenu = true
+vim.opt.wildmode = { "longest", "list", "full" }
+
+-- ── Statusline ───────────────────────────────────────────
+vim.opt.statusline = table.concat({
+  "%< ",                    -- cut at start
+  "%2*[%n%H%M%R%W]%* ",    -- flags and buffer number
+  "%-40f ",                 -- path
+  "%=%1*%y%*%* ",           -- file type (right-aligned)
+  "%10((%l,%c)%) ",         -- line and column
+  "%P",                     -- percentage of file
+})
+
+local map = vim.keymap.set
+map("n", "<Space>", "<Nop>", { silent = true })
+
+-- Quit all
+map("n", "<leader>qa", ":qa<CR>", { desc = "Quit all" })
+
+map("n", "<leader>/", ":noh<CR>", { desc = "Clear search" })
+
+-- Tab management
+map("n", "<leader>tc", ":tabnew<CR>",      { desc = "New tab" })
+map("n", "<leader>tn", ":tabnext<CR>",     { desc = "Next tab" })
+map("n", "<leader>tp", ":tabprevious<CR>", { desc = "Previous tab" })
+map("n", "<leader>tx", ":tabclose<CR>",    { desc = "Close tab" })
+
+map("n", "<leader>ll", ":Lexplore<CR>",    { desc = "List files." })
+
+-- Quickfix list
+map("n", "<leader>cn", ":cnext<CR>",    { desc = "Next Entry" })
+map("n", "<leader>cp", ":cprev<CR>",    { desc = "Previous Entry" })
+map("n", "<leader>co", ":copen<CR>",    { desc = "Open Quickfix List" })
+map("n", "<leader>cc", ":cclose<CR>",    { desc = "Close Quickfix List" })
+
+local builtin = require('telescope.builtin')
+map('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+-- Quickfix list
+map("n", "<leader>cn", ":cnext<CR>", { desc = "Next Quickfix Entry" })
+map("n", "<leader>cp", ":cprev<CR>", { desc = "Previous Quickfix Entry" })
+map("n", "<leader>co", ":copen<CR>", { desc = "Open Quickfix List" })
+map("n", "<leader>cc", ":cclose<CR>", { desc = "Close Quickfix List" })
+
+-- git
+map("n", "<leader>gg", ":Neogit<CR>", { desc = "Neogit" })
+map("n", "<leader>gb", ":Gitsigns blame<CR>", { desc = "Git Blame" })
+
+-- Format JSON with python
+map("n", "<F2>", ":%!python3 -m json.tool<CR>", { desc = "Format JSON" })
+
+-- Terminal mode
+map('t', '<Esc><Esc>', [[<C-\><C-n>]])
+
+-- NvimTree
+map("n", "<leader>fo", ":NvimTreeToggle<CR>", { desc = "Neogit" })
+
+if vim.g.neovide == true then
+
+  -- Disable all animations in Neovide
+--  vim.g.neovide_cursor_animation_length = 0.00
+--  vim.g.neovide_cursor_trail_size = 0
+--  vim.g.neovide_scroll_animation_length = 0.00
+--  vim.g.neovide_position_animation_length = 0
+
+  if vim.fn.has("macunix") == 1 then
+    vim.keymap.set('v', '<D-c>', '"+y')
+    vim.keymap.set('!', '<D-v>', '<C-R>+')
+    vim.keymap.set('n', '<D-s>', ':w<CR>')
+  end
+
+   vim.keymap.set({ "n", "v" }, "<C-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
+   vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+   vim.keymap.set({ "n" , "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
+end
+
+-- vim.cmd('colorscheme retrobox')
+

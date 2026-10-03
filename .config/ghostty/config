@@ -1,0 +1,20 @@
+# Shared config for all platforms.
+# install.sh links the matching os.darwin/os.linux file to ~/.config/ghostty/os.conf
+config-file = ?os.conf
+
+window-padding-x = 4
+window-padding-y = 4
+
+split-divider-color = #007700
+font-family = "JetBrains Mono"
+font-feature = -calt, -liga, -dlig
+theme = "Gruber darker"
+# theme = "Rose Pine"
+font-size = 16
+
+copy-on-select = clipboard
+shell-integration-features = ssh-env
+
+keybind = alt+bracket_right=goto_split:next
+keybind = alt+bracket_left=goto_split:previous
+

@@ -1,0 +1,55 @@
+{
+  "ui_font_family": "JetBrains Mono",
+  "auto_update": false,
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "plan",
+        "effort": "medium",
+        "fast": "off"
+      },
+      "type": "registry"
+    }
+  },
+  "buffer_font_features": {
+    "calt": false
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "threads_sidebar": {
+      "position": "right"
+    },
+    "dock": "right",
+    "default_model": {
+      "effort": "medium",
+      "enable_thinking": true,
+      "provider": "zed.dev",
+      "model": "gpt-5.6-luna"
+    }
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "allow_data_collection": "no",
+    "mode": "eager"
+  },
+  "double_click_in_multibuffer": "open",
+  "relative_line_numbers": "enabled",
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "dark",
+    "light": "Nightfox - opaque",
+    "dark": "Gruber Darker"
+  }
+}
