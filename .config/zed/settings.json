@@ -1,10 +1,11 @@
 {
-  "ui_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrains Mono",
   "auto_update": false,
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "mode": "plan",
+        "model": "opus",
+        "mode": "auto",
         "effort": "medium",
         "fast": "off"
       },
