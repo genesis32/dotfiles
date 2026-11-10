@@ -41,15 +41,15 @@ end
 
 -- ── Plugins ──────────────────────────────────────────────
 require("lazy").setup({
-  {
-    "blazkowolf/gruber-darker.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("gruber-darker").setup({ italic = { strings = false } })
-      vim.cmd.colorscheme("gruber-darker")
-    end,
-  },
+--  {
+--    "blazkowolf/gruber-darker.nvim",
+--    lazy = false,
+--    priority = 1000,
+--    config = function()
+--      require("gruber-darker").setup({ italic = { strings = false } })
+--      vim.cmd.colorscheme("gruber-darker")
+--    end,
+--  },
   {
     "linrongbin16/gitlinker.nvim",
     cmd = "GitLink",
